@@ -17,9 +17,8 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
 
-    this.toggleNavbar = this.toggleNavbar.bind(this);
     this.state = {
-      collapsed: true
+      collapsed: false
     };
   }
 
@@ -33,8 +32,8 @@ class Navbar extends Component {
     return (
       <BootstrapNavbar color="dark" dark expand="md">
         <NavbarBrand href="https://www.aizatto.com">aizatto.com</NavbarBrand>
-        <NavbarToggler onClick={this.toggle} />
-        <Collapse isOpen={this.state.isOpen} navbar>
+        <NavbarToggler onClick={() => this.toggleNavbar()} />
+        <Collapse isOpen={this.state.collapsed} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
               <NavLink href="https://www.aizatto.com/">aizatto.com</NavLink>
