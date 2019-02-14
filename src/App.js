@@ -1,28 +1,85 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import strftime from 'strftime';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+import {
+  Button,
+  Container,
+  Input,
+  InputGroup,
+  InputGroupAddon,
+} from 'reactstrap';
+import Navbar from './Navbar.js';
+import moment from 'moment';
 
-class App extends Component {
+const mmt = moment();
+
+class Field extends Component {
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="mb-2">
+        <code>{this.props.code}</code>
+        <InputGroup>
+          <InputGroupAddon addonType="prepend">
+            <CopyToClipboard text={this.props.content}>
+              <Button>Copy</Button>
+            </CopyToClipboard>
+          </InputGroupAddon>
+          <Input value={this.props.content} readOnly />
+        </InputGroup>
       </div>
     );
   }
+
+}
+
+class Time extends Component {
+
+  render() {
+    const str = strftime(this.props.fmt);
+    return <Field code={`strftime("${this.props.fmt}")`} content={str} />;
+  }
+
+}
+
+class Moment extends Component {
+
+  render() {
+    const str = mmt.format(this.props.fmt);
+    return <Field code={`moment().format("${this.props.fmt}")`} content={str} />;
+  }
+
+}
+
+class App extends Component {
+
+  render() {
+    
+    return (
+      <div>
+        <Navbar />
+        <Container className="pt-3">
+          <h1><code>Date</code></h1>
+          <Field code="Math.floor(Date.now() / 1000)" content={Math.floor(Date.now() / 1000)} />
+          <Field code="Date.now()" content={Date.now()} />
+          <h1><code>strftime</code></h1>
+          <a href="https://www.npmjs.com/package/strftime">https://www.npmjs.com/package/strftime</a>
+          <Time fmt="%Y/%m/%d %H:%M" />
+          <h1><code>moment</code></h1>
+          <a href="http://momentjs.com/">http://momentjs.com/</a>
+          <Moment fmt="dddd Do MMMM YYYY LTS" />
+          <Moment fmt="YYYY/M/D LTS - [W]W/[D]E dddd" />
+          <Moment fmt="YYYY/M/D LTS - [W]W/[D]E" />
+          Packages:
+          <ul>
+            <li><a href="https://www.npmjs.com/package/strftime">https://www.npmjs.com/package/strftime</a></li>
+            <li><a href="http://momentjs.com/">http://momentjs.com/</a></li>
+          </ul>
+        </Container>
+      </div>
+    );
+  }
+
 }
 
 export default App;
