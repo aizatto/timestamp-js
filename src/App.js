@@ -64,12 +64,14 @@ class App extends Component {
           <Field code="Date.now()" content={Date.now()} />
           <h1><code>strftime</code></h1>
           <a href="https://www.npmjs.com/package/strftime">https://www.npmjs.com/package/strftime</a>
-          <Time fmt="%Y/%m/%d %H:%M" />
+          <Time fmt="%H:%M%P" />
+          <Time fmt="%Y/%m/%d" />
+          <Time fmt="%Y/%m/%d %H:%M:%S%P" />
           <h1><code>moment</code></h1>
           <a href="http://momentjs.com/">http://momentjs.com/</a>
           <Moment fmt="dddd Do MMMM YYYY LTS" />
-          <Moment fmt="YYYY/M/D LTS - [W]W/[D]E dddd" />
-          <Moment fmt="YYYY/M/D LTS - [W]W/[D]E" />
+          <Moment fmt="YYYY/MM/DD LTS - [W]W/[D]E dddd" />
+          <Moment fmt="YYYY/MM/DD LTS - [W]W/[D]E" />
           Packages:
           <ul>
             <li><a href="https://www.npmjs.com/package/strftime">https://www.npmjs.com/package/strftime</a></li>
