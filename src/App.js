@@ -62,6 +62,7 @@ class App extends Component {
           <h1><code>Date</code></h1>
           <Field code="Math.floor(Date.now() / 1000)" content={Math.floor(Date.now() / 1000)} />
           <Field code="Date.now()" content={Date.now()} />
+          <Field code="new Date().toISOString()" content={new Date().toISOString()} />
           <h1><code>strftime</code></h1>
           <a href="https://www.npmjs.com/package/strftime">https://www.npmjs.com/package/strftime</a>
           <Time fmt="%H:%M%P" />
