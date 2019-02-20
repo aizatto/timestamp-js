@@ -11,3 +11,8 @@ https://github.com/aizatto/google-docs-add-on-timestamp
 This is a list of my commonly used timestamps.
 
 Also experimenting with netlify to easily host simple demos.
+
+# Possible Optimizations
+
+- Move to SSR, currently using React for ease of use
+  - Have to move "Copy" feature to frontend JS

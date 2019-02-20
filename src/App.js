@@ -60,6 +60,7 @@ class App extends Component {
         <Navbar />
         <Container className="pt-3">
           <h1><code>Date</code></h1>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date</a>
           <Field code="Math.floor(Date.now() / 1000)" content={Math.floor(Date.now() / 1000)} />
           <Field code="Date.now()" content={Date.now()} />
           <Field code="new Date().toISOString()" content={new Date().toISOString()} />
@@ -75,6 +76,7 @@ class App extends Component {
           <Moment fmt="YYYY/MM/DD LTS - [W]W/[D]E" />
           Packages:
           <ul>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date</a></li>
             <li><a href="https://www.npmjs.com/package/strftime">https://www.npmjs.com/package/strftime</a></li>
             <li><a href="http://momentjs.com/">http://momentjs.com/</a></li>
           </ul>
