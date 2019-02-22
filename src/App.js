@@ -82,6 +82,7 @@ class App extends Component {
             <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date</a></li>
             <li><a href="https://www.npmjs.com/package/strftime">https://www.npmjs.com/package/strftime</a></li>
             <li><a href="http://momentjs.com/">http://momentjs.com/</a></li>
+            <li><a href="https://date-fns.org/">https://date-fns.org/</a></li>
           </ul>
         </Container>
       </div>
