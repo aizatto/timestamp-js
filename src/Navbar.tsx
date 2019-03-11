@@ -1,7 +1,7 @@
 /**
  * https://reactstrap.github.io/components/navbar/
  */
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Collapse,
   Nav,

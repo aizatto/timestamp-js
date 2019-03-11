@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import strftime from 'strftime';
 import {
   Button,
@@ -7,8 +7,9 @@ import {
   InputGroup,
   InputGroupAddon,
 } from 'reactstrap';
-import Navbar from './Navbar';
 import moment from 'moment';
+import Navbar from './Navbar';
+
 const {CopyToClipboard} = require('react-copy-to-clipboard');
 
 const initialDate = new Date();
@@ -56,8 +57,8 @@ function Moment(props: {fmt: string}) {
 }
 
 function App() {
-  let [date, setDate] = useState(initialDate);
-  let [mmt, setMoment] = useState(initialMoment);
+  const [date, setDate] = useState(initialDate);
+  const [mmt, setMoment] = useState(initialMoment);
 
   const onClick = () => {
     setMoment(moment());
