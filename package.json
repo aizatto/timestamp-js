@@ -37,9 +37,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^1.4.2",
     "@typescript-eslint/parser": "^1.4.2",
-    "eslint": "^5.15.0",
     "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-aizatto": "git+ssh://git@github.com:aizatto/eslint-config-aizatto.git#v0.0.1",
     "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
