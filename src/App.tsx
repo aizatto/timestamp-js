@@ -190,7 +190,9 @@ function App() {
           <Moment ref={refs[KeyboardToIndex.KEY_2]} fmt="YYYY/MM/DD [W]W/[D]E dddd" />
           <Moment ref={refs[KeyboardToIndex.KEY_3]} fmt="LTS: " />
           <h1><code>Date</code></h1>
-          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date</a>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">
+            MDN: Date
+          </a>
           <Field code="Math.floor(Date.now() / 1000)" content={Math.floor(date.getTime() / 1000).toString()} />
           <Field code="Date.now()" content={date.getTime().toString()} />
           <Field code="new Date().toISOString()" content={date.toISOString()} />
@@ -222,7 +224,9 @@ function App() {
           </ul>
           Packages:
           <ul>
-            <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">
+            MDN: Date
+            </a></li>
             <li><a href="https://www.npmjs.com/package/strftime">https://www.npmjs.com/package/strftime</a></li>
             <li><a href="http://momentjs.com/">http://momentjs.com/</a></li>
             <li><a href="https://date-fns.org/">https://date-fns.org/</a></li>
