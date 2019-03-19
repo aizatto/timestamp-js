@@ -46,31 +46,51 @@ const history = {
 const SettingsContext = React.createContext({
   date: history.dates[0],
   moment: history.moments[0],
+  clipboard: '',
   setClipboard: (_: string) => {},
 });
 
 const Field = React.forwardRef((props: {content: string, code: string}, ref) => {
-  const { setClipboard } = useContext(SettingsContext);
-  if (ref) {
-    useImperativeHandle(
-      ref,
-      () => ({
-        value: () => {
-          return props.content;
-        }
-      }),
-      [props.content],
-    );
+  const { date, clipboard, setClipboard } = useContext(SettingsContext);
+
+  const copied = clipboard === props.content;
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      value: () => {
+        return props.content;
+      }
+    }),
+    [props.content],
+  );
+
+  const onClick = () => {
+    setClipboard(props.content);
   }
+
+  const alertBox = copied
+    ? (
+      <Alert color="success" className="mt-1">
+        <>
+          Copied to clipboard:
+          {' '}
+          <code>{props.content}</code>
+        </>
+      </Alert>
+)
+    : null
+
   return (
     <div className="mb-2">
       <code>{props.code}</code>
       <InputGroup>
         <InputGroupAddon addonType="prepend">
-          <Button onClick={() => setClipboard(props.content)}>Copy</Button>
+          <Button onClick={onClick}>Copy</Button>
         </InputGroupAddon>
         <Input value={props.content} readOnly />
       </InputGroup>
+      {alertBox}
     </div>
   );
 });
@@ -95,8 +115,6 @@ function App() {
   const windowOnKeyDownListener = useRef<(event: KeyboardEvent) => void>();
 
   const settings = useContext(SettingsContext);
-  settings.date = date;
-  settings.moment = mmt;
 
   // I don't use a loop because it is a Hook Rule to not place hooks
   // in loops
@@ -109,32 +127,35 @@ function App() {
 
   const refreshTimestamps = () => {
     const newDate = new Date();
-    const newMmt = moment();
+    const newMoment = moment();
+
+    settings.date = newDate;
+    settings.moment = newMoment;
     history.dates.push(newDate)
-    history.moments.push(newMmt);
+    history.moments.push(newMoment);
     setDate(newDate);
-    setMoment(newMmt);
+    setMoment(newMoment);
     setAlertText(
       <>
         Refreshed at: 
         {' '}
-        <code>{newMmt.format("YYYY/MM/DD LTS - [W]W/[D]E dddd")}</code>
+        <code>{newMoment.format("YYYY/MM/DD LTS - [W]W/[D]E dddd")}</code>
       </>
     );
   }
 
   if (!windowOnKeyDownListener.current) {
-    settings.setClipboard = (value) => {
+    settings.setClipboard = (value: string) => {
+      settings.clipboard = value;
       copyToClipboard(value);
       setAlertText(
         <>
-          Copied to clipboard:
+        Copied to clipboard:
           {' '}
           <code>{value}</code>
         </>
       );
     }
-
     const listener = (event: KeyboardEvent) => {
       if ((KeyCode.DIGIT_1 <= event.keyCode && event.keyCode <= KeyCode.DIGIT_9)) {
         const index = event.keyCode - KeyCode.DIGIT_1;
