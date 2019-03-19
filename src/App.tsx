@@ -1,6 +1,6 @@
 /* eslint-env browser */
 /* eslint-disable react/no-multi-comp */
-import React, { useState, useRef, useImperativeHandle } from 'react';
+import React, { useContext, useState, useRef, useImperativeHandle } from 'react';
 import strftime from 'strftime';
 import {
   Alert,
@@ -72,25 +72,15 @@ const Field = React.forwardRef((props: {content: string, code: string}, ref) => 
 });
 
 const Time = React.forwardRef((props: {fmt: string}, ref) => {
-  return (
-    <DateContext.Consumer>
-      {(date) => {
-        const str = strftime(props.fmt, date);
-        return <Field ref={ref} code={`strftime("${props.fmt}")`} content={str} />;
-      }}
-    </DateContext.Consumer>
-  );
+  const date = useContext(DateContext);
+  const str = strftime(props.fmt, date);
+  return <Field ref={ref} code={`strftime("${props.fmt}")`} content={str} />;
 });
 
 const Moment = React.forwardRef((props: {fmt: string }, ref) => {
-  return (
-    <MomentContext.Consumer>
-      {(mmt) => {
-        const str = mmt.format(props.fmt);
-        return <Field ref={ref} code={`moment().format("${props.fmt}")`} content={str} />;
-      }}
-    </MomentContext.Consumer>
-  );
+  const mmt = useContext(MomentContext);
+  const str = mmt.format(props.fmt);
+  return <Field ref={ref} code={`moment().format("${props.fmt}")`} content={str} />;
 });
 
 
