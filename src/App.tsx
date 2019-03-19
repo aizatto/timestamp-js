@@ -131,6 +131,7 @@ function App() {
 
     settings.date = newDate;
     settings.moment = newMoment;
+    settings.clipboard = '';
     history.dates.push(newDate)
     history.moments.push(newMoment);
     setDate(newDate);
