@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-env browser */
+import React, { useState, useRef } from 'react';
 import strftime from 'strftime';
 import {
   Button,
@@ -12,11 +13,17 @@ import Navbar from './Navbar';
 
 const {CopyToClipboard} = require('react-copy-to-clipboard');
 
-const initialDate = new Date();
-const initialMoment = moment();
+const history = {
+  dates: [
+    new Date(),
+  ],
+  moments: [
+    moment(),
+  ]
+};
 
-const DateContext = React.createContext<Date>(new Date());
-const MomentContext = React.createContext<moment.Moment>(initialMoment);
+const DateContext = React.createContext<Date>(history.dates[0]);
+const MomentContext = React.createContext<moment.Moment>(history.moments[0]);
 
 function Field(props: {content: string, code: string}) {
   return (
@@ -56,13 +63,27 @@ function Moment(props: {fmt: string}) {
   );
 }
 
-function App() {
-  const [date, setDate] = useState(initialDate);
-  const [mmt, setMoment] = useState(initialMoment);
 
-  const onClick = () => {
-    setMoment(moment());
-    setDate(new Date());
+function App() {
+  const [date, setDate] = useState(history.dates[0]);
+  const [mmt, setMoment] = useState(history.moments[0]);
+  const windowOnKeyDownListener = useRef<(event: KeyboardEvent) => void>();
+
+  const refreshTimestamps = () => {
+    const newDate = new Date();
+    const newMmt = moment();
+    history.dates.push(newDate)
+    history.moments.push(newMmt);
+    setDate(newDate);
+    setMoment(newMmt);
+  }
+
+  if (!windowOnKeyDownListener.current) {
+    const listener = () => {
+      refreshTimestamps();
+    };
+    windowOnKeyDownListener.current = listener;
+    window.addEventListener('keydown', listener);
   }
 
   return (
@@ -71,7 +92,7 @@ function App() {
         <MomentContext.Provider value={mmt}>
           <Navbar />
           <Container className="pt-3">
-            <Button onClick={onClick} className="float-right">Refresh</Button>
+            <Button onClick={refreshTimestamps} className="float-right">Refresh</Button>
             <h1><code>Frequently Used</code></h1>
             <Moment fmt="YYYY/MM/DD LTS - [W]W/[D]E dddd" />
             <Moment fmt="YYYY/MM/DD [W]W/[D]E dddd" />
