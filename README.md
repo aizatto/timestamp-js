@@ -1,5 +1,7 @@
 # timestamp
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/aizatto/timestamp-js.svg)](https://greenkeeper.io/)
+
 I use timestamps in a lot of my documents, so I want an easy way for me to copy timestamps.
 
 See:
