@@ -14,7 +14,7 @@
     "moment": "^2.24.0",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
-    "react-scripts": "2.1.5",
+    "react-scripts": "2.1.8",
     "reactstrap": "^7.1.0",
     "strftime": "^0.10.0",
     "typescript": "^3.3.3333"
