@@ -158,6 +158,13 @@ function App() {
       );
     }
     const listener = (event: KeyboardEvent) => {
+      if (event.altKey ||
+          event.ctrlKey ||
+          event.metaKey ||
+          event.shiftKey) {
+        return;
+      }
+
       if ((KeyCode.DIGIT_1 <= event.keyCode && event.keyCode <= KeyCode.DIGIT_9)) {
         const index = event.keyCode - KeyCode.DIGIT_1;
         const ref = refs[index];
@@ -224,9 +231,11 @@ function App() {
           </ul>
           Packages:
           <ul>
-            <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">
             MDN: Date
-            </a></li>
+              </a>
+            </li>
             <li><a href="https://www.npmjs.com/package/strftime">https://www.npmjs.com/package/strftime</a></li>
             <li><a href="http://momentjs.com/">http://momentjs.com/</a></li>
             <li><a href="https://date-fns.org/">https://date-fns.org/</a></li>
