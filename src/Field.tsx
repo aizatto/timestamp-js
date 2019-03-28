@@ -34,14 +34,16 @@ export const Field = React.forwardRef((props: {content: string, code: string}, r
 )
     : null
 
+  const inputType = props.content.includes("\n") ? 'textarea' : 'text';
+
   return (
     <div className="mb-2">
-      <code>{props.code}</code>
+      <code>{props.code.replace(/\n/g, "\\n")}</code>
       <InputGroup>
         <InputGroupAddon addonType="prepend">
           <Button onClick={onClick}>Copy</Button>
         </InputGroupAddon>
-        <Input value={props.content} readOnly />
+        <Input type={inputType} value={props.content} readOnly />
       </InputGroup>
       {alertBox}
     </div>
