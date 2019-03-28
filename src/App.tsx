@@ -1,18 +1,12 @@
 /* eslint-env browser */
 /* eslint-disable react/no-multi-comp */
-import React, { useContext, useState, useRef, useImperativeHandle } from 'react';
-import strftime from 'strftime';
-import {
-  Alert,
-  Button,
-  Container,
-  Input,
-  InputGroup,
-  InputGroupAddon,
-} from 'reactstrap';
+import React, { useContext, useState, useRef } from 'react';
+import { Alert, Button, Container } from 'reactstrap';
 import moment from 'moment';
 import copyToClipboard from 'copy-to-clipboard';
 import Navbar from './Navbar';
+import { Field, Time, Moment } from './Field';
+import SettingsContext from './SettingsContext';
 
 interface CopyHandler {
   value: () => string,
@@ -43,71 +37,6 @@ const history = {
   ]
 };
 
-const SettingsContext = React.createContext({
-  date: history.dates[0],
-  moment: history.moments[0],
-  clipboard: '',
-  setClipboard: (_: string) => {},
-});
-
-const Field = React.forwardRef((props: {content: string, code: string}, ref) => {
-  const { date, clipboard, setClipboard } = useContext(SettingsContext);
-
-  const copied = clipboard === props.content;
-
-  useImperativeHandle(
-    ref,
-    () => ({
-      value: () => {
-        return props.content;
-      }
-    }),
-    [props.content],
-  );
-
-  const onClick = () => {
-    setClipboard(props.content);
-  }
-
-  const alertBox = copied
-    ? (
-      <Alert color="success" className="mt-1">
-        <>
-          Copied to clipboard:
-          {' '}
-          <code>{props.content}</code>
-        </>
-      </Alert>
-)
-    : null
-
-  return (
-    <div className="mb-2">
-      <code>{props.code}</code>
-      <InputGroup>
-        <InputGroupAddon addonType="prepend">
-          <Button onClick={onClick}>Copy</Button>
-        </InputGroupAddon>
-        <Input value={props.content} readOnly />
-      </InputGroup>
-      {alertBox}
-    </div>
-  );
-});
-
-const Time = React.forwardRef((props: {fmt: string}, ref) => {
-  const { date } = useContext(SettingsContext);
-  const str = strftime(props.fmt, date);
-  return <Field ref={ref} code={`strftime("${props.fmt}")`} content={str} />;
-});
-
-const Moment = React.forwardRef((props: {fmt: string }, ref) => {
-  const { moment: mmt } = useContext(SettingsContext);
-  const str = mmt.format(props.fmt);
-  return <Field ref={ref} code={`moment().format("${props.fmt}")`} content={str} />;
-});
-
-
 function App() {
   const [date, setDate] = useState(history.dates[0]);
   const [mmt, setMoment] = useState(history.moments[0]);
@@ -129,8 +58,6 @@ function App() {
     const newDate = new Date();
     const newMoment = moment();
 
-    settings.date = newDate;
-    settings.moment = newMoment;
     settings.clipboard = '';
     history.dates.push(newDate)
     history.moments.push(newMoment);
