@@ -29,22 +29,13 @@ enum KeyboardToIndex {
 }
 /* eslint-enable -no-unused-vars */
 
-const history = {
-  dates: [
-    new Date(),
-  ],
-  moments: [
-    moment(),
-  ]
-};
-
 function App() {
-  const [date, setDate] = useState(history.dates[0]);
-  const [mmt, setMoment] = useState(history.moments[0]);
+  const settings = useContext(SettingsContext);
+
+  const [date, setDate] = useState(settings.date);
+  const [mmt, setMoment] = useState(settings.moment);
   const [alertText, setAlertText] = useState<JSX.Element | null>();
   const windowOnKeyDownListener = useRef<(event: KeyboardEvent) => void>();
-
-  const settings = useContext(SettingsContext);
 
   // I don't use a loop because it is a Hook Rule to not place hooks
   // in loops
@@ -61,8 +52,8 @@ function App() {
     const newMoment = moment();
 
     settings.clipboard = '';
-    history.dates.push(newDate)
-    history.moments.push(newMoment);
+    settings.date = newDate;
+    settings.moment = newMoment;
     setDate(newDate);
     setMoment(newMoment);
     setAlertText(
