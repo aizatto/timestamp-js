@@ -7,6 +7,7 @@ import copyToClipboard from 'copy-to-clipboard';
 import Navbar from './Navbar';
 import { Field, Time, Moment } from './Field';
 import SettingsContext from './SettingsContext';
+import { dayOfYear } from 'aizatto/lib/fn';
 
 interface CopyHandler {
   value: () => string,
@@ -105,6 +106,8 @@ function App() {
     ? <Alert color="success">{alertText}</Alert>
     : null;
 
+  const doy = dayOfYear(settings.date);
+
   return (
     <div>
       <SettingsContext.Provider value={settings}>
@@ -114,7 +117,7 @@ function App() {
           <Button onClick={refreshTimestamps} className="float-right">Refresh</Button>
           <h1><code>Frequently Used</code></h1>
           <Moment ref={refs[KeyboardToIndex.KEY_1]} fmt="YYYY/MM/DD LTS - [W]W/[D]E dddd" />
-          <Moment ref={refs[KeyboardToIndex.KEY_2]} fmt={"YYYY/MM/DD [W]W/[D]E dddd[\n]LTS: "} />
+          <Moment ref={refs[KeyboardToIndex.KEY_2]} fmt={`YYYY/MM/DD [W]W/[D]E dddd - [D]${doy}/366[R] [\n]LTS: `} />
           <Moment ref={refs[KeyboardToIndex.KEY_3]} fmt="LTS: " />
           <Moment ref={refs[KeyboardToIndex.KEY_4]} fmt="YYYY/MM/DD [W]W/[D]E dddd" />
           <h1><code>Date</code></h1>
