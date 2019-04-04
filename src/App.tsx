@@ -4,10 +4,10 @@ import React, { useContext, useState, useRef } from 'react';
 import { Alert, Button, Container } from 'reactstrap';
 import moment from 'moment';
 import copyToClipboard from 'copy-to-clipboard';
+import { dayOfYear } from 'aizatto/lib/fn';
 import Navbar from './Navbar';
 import { Field, Time, Moment } from './Field';
 import SettingsContext from './SettingsContext';
-import { dayOfYear } from 'aizatto/lib/fn';
 
 interface CopyHandler {
   value: () => string,
@@ -132,6 +132,7 @@ function App() {
           <Time fmt="%H:%M%P" />
           <Time fmt="%Y/%m/%d" />
           <Time fmt="%Y/%m/%d %H:%M:%S%P" />
+          <Time fmt="%Y%m%d%H%M%S %Y %b %d" />
           <h1><code>moment</code></h1>
           <a href="http://momentjs.com/">http://momentjs.com/</a>
           <Moment fmt="dddd Do MMMM YYYY LTS" />
