@@ -28,6 +28,9 @@ export default function Navbar() {
             <NavLink href="https://www.deepthoughtapp.com/">Deep Thought</NavLink>
           </NavItem>
           <NavItem>
+            <NavLink href="https://www.logbook.my/">Logbook</NavLink>
+          </NavItem>
+          <NavItem>
             <NavLink href="https://github.com/aizatto/timestamp-js">GitHub</NavLink>
           </NavItem>
           <NavItem>
