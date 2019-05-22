@@ -118,9 +118,9 @@ function App() {
           {alertBox}
           <Button onClick={refreshTimestamps} className="float-right">Refresh</Button>
           <h1><code>Frequently Used</code></h1>
-          <Moment ref={refs[KeyboardToIndex.KEY_1]} fmt="YYYY/MM/DD LTS - [W]W/[D]E dddd" />
+          <Moment ref={refs[KeyboardToIndex.KEY_1]} fmt="LTS: " />
           <Moment ref={refs[KeyboardToIndex.KEY_2]} fmt={`YYYY/MM/DD [W]W/[D]E dddd - [D]${doy}/366[R] [\n]LTS: `} />
-          <Moment ref={refs[KeyboardToIndex.KEY_3]} fmt="LTS: " />
+          <Moment ref={refs[KeyboardToIndex.KEY_3]} fmt="YYYY/MM/DD LTS - [W]W/[D]E dddd" />
           <Moment ref={refs[KeyboardToIndex.KEY_4]} fmt="YYYY/MM/DD [W]W/[D]E dddd" />
           <Moment ref={refs[KeyboardToIndex.KEY_5]} fmt={`YYYY/MM/DD LTS - [W]W/[D]E dddd - [D]${doy}/366[R]`} />
           <h1><code>Date</code></h1>
