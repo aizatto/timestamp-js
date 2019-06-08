@@ -8,6 +8,7 @@ import { dayOfYear } from 'aizatto/lib/fn';
 import Navbar from './Navbar';
 import { Field, Time, Moment } from './Field';
 import SettingsContext from './SettingsContext';
+import "./bootstrap.min.css";
 
 interface CopyHandler {
   value: () => string,
