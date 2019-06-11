@@ -22,7 +22,7 @@
   },
   "scripts": {
     "predeploy": "yarn run build",
-    "deploy": "PUBLIC_URL=https://aizatto.github.io/timestamp-js/ gh-pages -d build",
+    "deploy": "PUBLIC_URL=https://aizatto.github.io/timestamp-js/ yarn build && gh-pages -d build",
     "lint": "yarn run eslint --fix --ext ts,tsx,js,jsx src",
     "start": "react-scripts start",
     "build": "react-scripts build",
