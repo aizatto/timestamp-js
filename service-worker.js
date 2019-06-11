@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "https://aizatto.github.io/timestamp-js/precache-manifest.5d3c93d58864165cb4634230dfd7a011.js"
+  "https://aizatto.github.io/timestamp-js/precache-manifest.10195b119cb139784a2e92ec703f3fc4.js"
 );
 
 workbox.clientsClaim();
