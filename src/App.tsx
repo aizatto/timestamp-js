@@ -129,7 +129,7 @@ function App() {
           <Moment ref={refs[KeyboardToIndex.KEY_4]} fmt="YYYY/MM/DD [W]W/[D]E dddd" />
           <Moment ref={refs[KeyboardToIndex.KEY_5]} fmt={`YYYY/MM/DD LTS - [W]W/[D]E dddd - [D]${doy}/366[R]`} />
           <Moment ref={refs[KeyboardToIndex.KEY_6]} fmt={`YYYY[W]W: YYYY/MM/DD`} />
-          <Moment ref={refs[KeyboardToIndex.KEY_7]} fmt="YYYY/MM/DD [W]W/[D]E dddd MMMM Do" />
+          <Moment ref={refs[KeyboardToIndex.KEY_7]} fmt={`YYYY/MM/DD [W]W/[D]E dddd MMMM Do - [D]${doy}/366[R]`} />
           <h1><code>Date</code></h1>
           <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">
             MDN: Date
