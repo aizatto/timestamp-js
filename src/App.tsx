@@ -30,6 +30,7 @@ enum KeyboardToIndex {
   KEY_4,
   KEY_5,
   KEY_6,
+  KEY_7,
 }
 /* eslint-enable -no-unused-vars */
 
@@ -45,12 +46,13 @@ function App() {
   // in loops
   // See https://reactjs.org/docs/hooks-rules.html#only-call-hooks-at-the-top-level
   const refs = [
-    useRef({} as CopyHandler),
-    useRef({} as CopyHandler),
-    useRef({} as CopyHandler),
-    useRef({} as CopyHandler),
-    useRef({} as CopyHandler),
-    useRef({} as CopyHandler),
+    useRef({} as CopyHandler), // 1
+    useRef({} as CopyHandler), // 2
+    useRef({} as CopyHandler), // 3
+    useRef({} as CopyHandler), // 4
+    useRef({} as CopyHandler), // 5
+    useRef({} as CopyHandler), // 6
+    useRef({} as CopyHandler), // 7
   ];
 
   const refreshTimestamps = () => {
@@ -127,6 +129,7 @@ function App() {
           <Moment ref={refs[KeyboardToIndex.KEY_4]} fmt="YYYY/MM/DD [W]W/[D]E dddd" />
           <Moment ref={refs[KeyboardToIndex.KEY_5]} fmt={`YYYY/MM/DD LTS - [W]W/[D]E dddd - [D]${doy}/366[R]`} />
           <Moment ref={refs[KeyboardToIndex.KEY_6]} fmt={`YYYY[W]W: YYYY/MM/DD`} />
+          <Moment ref={refs[KeyboardToIndex.KEY_7]} fmt="YYYY/MM/DD [W]W/[D]E dddd MMMM Do" />
           <h1><code>Date</code></h1>
           <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">
             MDN: Date
