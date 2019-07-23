@@ -9,8 +9,10 @@ import Navbar from './Navbar';
 import { Field, Time, Moment } from './Field';
 import SettingsContext from './SettingsContext';
 import "./bootstrap.min.css";
+import { DB, formats } from './DB';
 
 interface CopyHandler {
+  fmtKey?: string,
   value: () => string,
 }
 
@@ -33,6 +35,8 @@ enum KeyboardToIndex {
   KEY_7,
 }
 /* eslint-enable -no-unused-vars */
+
+const db = new DB();
 
 function App() {
   const settings = useContext(SettingsContext);
@@ -99,6 +103,10 @@ function App() {
         if (ref && ref.current && ref.current.value) {
           const value = ref.current.value();
           settings.setClipboard(value);
+          const fmtKey = ref.current.fmtKey;
+          if (fmtKey) {
+            db.increment(fmtKey);
+          }
         }
       }
       if ((KeyCode.A <= event.keyCode && event.keyCode <= KeyCode.Z)) {
@@ -114,6 +122,13 @@ function App() {
     : null;
 
   const doy = dayOfYear(settings.date);
+  const frequentlyUsed = db.popular().map(([key], index) => {
+    const ref = refs[index];
+    const format = formats[key].fn(doy as number);
+    return (
+      <Moment key={key} fmtKey={key} ref={ref} fmt={format} prefix={`${index + 1}: `} />
+    );
+  })
 
   return (
     <div>
@@ -123,13 +138,7 @@ function App() {
           {alertBox}
           <Button onClick={refreshTimestamps} className="float-right">Refresh</Button>
           <h1><code>Frequently Used</code></h1>
-          <Moment ref={refs[KeyboardToIndex.KEY_1]} fmt="LTS: " />
-          <Moment ref={refs[KeyboardToIndex.KEY_2]} fmt={`YYYY/MM/DD [W]W/[D]E dddd - [D]${doy}/366[R] [\n]LTS: `} />
-          <Moment ref={refs[KeyboardToIndex.KEY_3]} fmt="YYYY/MM/DD LTS - [W]W/[D]E dddd" />
-          <Moment ref={refs[KeyboardToIndex.KEY_4]} fmt="YYYY/MM/DD [W]W/[D]E dddd" />
-          <Moment ref={refs[KeyboardToIndex.KEY_5]} fmt={`YYYY/MM/DD LTS - [W]W/[D]E dddd - [D]${doy}/366[R]`} />
-          <Moment ref={refs[KeyboardToIndex.KEY_6]} fmt={`YYYY[W]W: YYYY/MM/DD`} />
-          <Moment ref={refs[KeyboardToIndex.KEY_7]} fmt={`YYYY/MM/DD [W]W/[D]E dddd MMMM Do - [D]${doy}/366[R]`} />
+          {frequentlyUsed}
           <h1><code>Date</code></h1>
           <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">
             MDN: Date

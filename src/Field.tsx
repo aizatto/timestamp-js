@@ -3,7 +3,7 @@ import { Alert, Button, Input, InputGroup, InputGroupAddon } from 'reactstrap';
 import strftime from 'strftime';
 import SettingsContext from './SettingsContext';
 
-export const Field = React.forwardRef((props: {content: string, code: string}, ref) => {
+export const Field = React.forwardRef((props: {content: string, code: string, fmtKey?: string}, ref) => {
   const { clipboard, setClipboard } = useContext(SettingsContext);
 
   const copied = clipboard === props.content;
@@ -11,6 +11,7 @@ export const Field = React.forwardRef((props: {content: string, code: string}, r
   useImperativeHandle(
     ref,
     () => ({
+      fmtKey: props.fmtKey,
       value: () => {
         return props.content;
       }
@@ -56,8 +57,8 @@ export const Time = React.forwardRef((props: {fmt: string}, ref) => {
   return <Field ref={ref} code={`strftime("${props.fmt}")`} content={str} />;
 });
 
-export const Moment = React.forwardRef((props: {fmt: string }, ref) => {
+export const Moment = React.forwardRef((props: {fmt: string, fmtKey?: string, prefix?: string }, ref) => {
   const { moment: mmt } = useContext(SettingsContext);
   const str = mmt.format(props.fmt);
-  return <Field ref={ref} code={`moment().format("${props.fmt}")`} content={str} />;
+  return <Field fmtKey={props.fmtKey} ref={ref} code={`${props.prefix}moment().format("${props.fmt}")`} content={str} />;
 });
