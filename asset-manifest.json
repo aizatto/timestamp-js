@@ -1,13 +1,17 @@
 {
-  "main.css": "https://aizatto.github.io/timestamp-js/static/css/main.c187ffad.chunk.css",
-  "main.js": "https://aizatto.github.io/timestamp-js/static/js/main.dac521bc.chunk.js",
-  "main.js.map": "https://aizatto.github.io/timestamp-js/static/js/main.dac521bc.chunk.js.map",
-  "runtime~main.js": "https://aizatto.github.io/timestamp-js/static/js/runtime~main.afc87d16.js",
-  "runtime~main.js.map": "https://aizatto.github.io/timestamp-js/static/js/runtime~main.afc87d16.js.map",
-  "static/js/2.fa9cccac.chunk.js": "https://aizatto.github.io/timestamp-js/static/js/2.fa9cccac.chunk.js",
-  "static/js/2.fa9cccac.chunk.js.map": "https://aizatto.github.io/timestamp-js/static/js/2.fa9cccac.chunk.js.map",
-  "index.html": "https://aizatto.github.io/timestamp-js/index.html",
-  "precache-manifest.10195b119cb139784a2e92ec703f3fc4.js": "https://aizatto.github.io/timestamp-js/precache-manifest.10195b119cb139784a2e92ec703f3fc4.js",
-  "service-worker.js": "https://aizatto.github.io/timestamp-js/service-worker.js",
-  "static/css/main.c187ffad.chunk.css.map": "https://aizatto.github.io/timestamp-js/static/css/main.c187ffad.chunk.css.map"
+  "files": {
+    "main.css": "https://aizatto.github.io/timestamp-js/static/css/main.13234fec.chunk.css",
+    "main.js": "https://aizatto.github.io/timestamp-js/static/js/main.af0c1717.chunk.js",
+    "main.js.map": "https://aizatto.github.io/timestamp-js/static/js/main.af0c1717.chunk.js.map",
+    "runtime~main.js": "https://aizatto.github.io/timestamp-js/static/js/runtime~main.9f4980ce.js",
+    "runtime~main.js.map": "https://aizatto.github.io/timestamp-js/static/js/runtime~main.9f4980ce.js.map",
+    "static/css/2.cc034990.chunk.css": "https://aizatto.github.io/timestamp-js/static/css/2.cc034990.chunk.css",
+    "static/js/2.2c4bf029.chunk.js": "https://aizatto.github.io/timestamp-js/static/js/2.2c4bf029.chunk.js",
+    "static/js/2.2c4bf029.chunk.js.map": "https://aizatto.github.io/timestamp-js/static/js/2.2c4bf029.chunk.js.map",
+    "index.html": "https://aizatto.github.io/timestamp-js/index.html",
+    "precache-manifest.5d38150ed2109a8661de80d8916f85b5.js": "https://aizatto.github.io/timestamp-js/precache-manifest.5d38150ed2109a8661de80d8916f85b5.js",
+    "service-worker.js": "https://aizatto.github.io/timestamp-js/service-worker.js",
+    "static/css/2.cc034990.chunk.css.map": "https://aizatto.github.io/timestamp-js/static/css/2.cc034990.chunk.css.map",
+    "static/css/main.13234fec.chunk.css.map": "https://aizatto.github.io/timestamp-js/static/css/main.13234fec.chunk.css.map"
+  }
 }
