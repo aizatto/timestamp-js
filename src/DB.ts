@@ -49,7 +49,7 @@ export class DB {
     const localStorageCounts = window.localStorage.getItem('counts');
     const counts: Map<string, number> = localStorageCounts ? new Map(JSON.parse(localStorageCounts)) : new Map();
 
-    Object.keys(formats).map(key => {
+    Object.keys(formats).forEach(key => {
       if (!counts.has(key)) {
         counts.set(key, 0);
       }

@@ -16,7 +16,6 @@ export const Field = React.forwardRef((props: {content: string, code: string, fm
         return props.content;
       }
     }),
-    [props.content],
   );
 
   const onClick = () => {

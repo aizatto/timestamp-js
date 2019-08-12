@@ -22,7 +22,6 @@ interface CopyHandler {
   value: () => string,
 }
 
-/* eslint-disable no-unused-vars */
 enum KeyCode {
 //  DIGIT_0 = 48,
   DIGIT_1 = 49,
@@ -31,17 +30,6 @@ enum KeyCode {
   Z = 90,
 }
 
-enum KeyboardToIndex {
-  KEY_1 = 0,
-  KEY_2,
-  KEY_3,
-  KEY_4,
-  KEY_5,
-  KEY_6,
-  KEY_7,
-}
-/* eslint-enable -no-unused-vars */
-
 const db = new DB();
 
 function App() {
@@ -49,7 +37,7 @@ function App() {
 
   const [datepickerFocus, setDatepickerFocus] = useState(false);
   const [date, setDate] = useState(settings.date);
-  const [mmt, setMoment] = useState(settings.moment);
+  const [, setMoment] = useState(settings.moment);
   const [alertText, setAlertText] = useState<JSX.Element | null>();
   const windowOnKeyDownListener = useRef<(event: KeyboardEvent) => void>();
 
