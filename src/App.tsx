@@ -5,6 +5,12 @@ import { Alert, Button, Container } from 'reactstrap';
 import moment from 'moment';
 import copyToClipboard from 'copy-to-clipboard';
 import { dayOfYear } from 'aizatto/lib/fn';
+
+// @ts-ignore
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import "./datepicker.css";
+
 import Navbar from './Navbar';
 import { Field, Time, Moment } from './Field';
 import SettingsContext from './SettingsContext';
@@ -41,6 +47,7 @@ const db = new DB();
 function App() {
   const settings = useContext(SettingsContext);
 
+  const [datepickerFocus, setDatepickerFocus] = useState(false);
   const [date, setDate] = useState(settings.date);
   const [mmt, setMoment] = useState(settings.moment);
   const [alertText, setAlertText] = useState<JSX.Element | null>();
@@ -59,9 +66,8 @@ function App() {
     useRef({} as CopyHandler), // 7
   ];
 
-  const refreshTimestamps = () => {
-    const newDate = new Date();
-    const newMoment = moment();
+  const setTimestamps = (newDate: Date) => {
+    const newMoment = moment(newDate);
 
     settings.clipboard = '';
     settings.date = newDate;
@@ -70,15 +76,22 @@ function App() {
     setMoment(newMoment);
     setAlertText(
       <>
-        Refreshed at: 
+        Refreshed to:
         {' '}
         <code>{newMoment.format("YYYY/MM/DD LTS - [W]W/[D]E dddd")}</code>
       </>
     );
   }
 
+  const refreshTimestamps = () => {
+    setTimestamps(new Date());
+  }
+
   if (!windowOnKeyDownListener.current) {
     settings.setClipboard = (value: string) => {
+      if (datepickerFocus) {
+        return;
+      }
       settings.clipboard = value;
       copyToClipboard(value);
       setAlertText(
@@ -90,7 +103,8 @@ function App() {
       );
     }
     const listener = (event: KeyboardEvent) => {
-      if (event.altKey ||
+      if (datepickerFocus ||
+          event.altKey ||
           event.ctrlKey ||
           event.metaKey ||
           event.shiftKey) {
@@ -136,7 +150,22 @@ function App() {
         <Navbar />
         <Container className="pt-3">
           {alertBox}
+          <div className="mb-2">
           <Button onClick={refreshTimestamps} className="float-right">Refresh</Button>
+          <DatePicker
+            selected={date}
+            onFocus={() => setDatepickerFocus(true)}
+            onBlur={() => setDatepickerFocus(false)}
+            onChange={(newDate: Date) => { setTimestamps(newDate); }}
+            className="form-control"
+            showTimeSelect
+            timeFormat="HH:mm"
+            timeIntervals={15}
+            dateFormat="MMMM d, yyyy h:mm:ss aa"
+            timeCaption="time"
+            disabledKeyboardNavigation
+          />
+          </div>
           <h1><code>Frequently Used</code></h1>
           {frequentlyUsed}
           <h1><code>Date</code></h1>

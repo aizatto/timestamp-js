@@ -63,7 +63,6 @@ export class DB {
   }
 
   increment(key: string) {
-    console.log(`increment: ${key}`);
     const value = this.counts.get(key);
     if (value) {
       this.counts.set(key, value + 1);
