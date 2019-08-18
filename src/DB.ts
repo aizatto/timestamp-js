@@ -35,6 +35,11 @@ export const formats: Formats = {
       return `YYYY/MM/DD [W]W/[D]E dddd MMMM Do - [D]${doy}/366[R]`;
     },
   },
+  g: {
+    fn: (doy: number) => {
+      return `YYYY/MM/DD [W]W/[D]E dddd MMMM Do - [D]${doy}/366[R] LTS:`;
+    },
+  },
 }
           
 /**
