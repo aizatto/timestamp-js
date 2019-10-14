@@ -25,10 +25,10 @@ export default function Navbar() {
             <NavLink href="https://www.aizatto.com/">aizatto.com</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="https://www.deepthoughtapp.com/">Deep Thought</NavLink>
+            <NavLink href="https://booktools.app/">Book Tools</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="https://www.logbook.my/">Logbook</NavLink>
+            <NavLink href="https://www.deepthoughtapp.com/">Deep Thought</NavLink>
           </NavItem>
           <NavItem>
             <NavLink href="https://github.com/aizatto/timestamp-js">GitHub</NavLink>
