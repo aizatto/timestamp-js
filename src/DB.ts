@@ -40,6 +40,11 @@ export const formats: Formats = {
       return `YYYY/MM/DD [W]W/[D]E dddd MMMM Do - [D]${doy}/366[R] LTS:`;
     },
   },
+  h: {
+    fn: (doy: number) => {
+      return `MMMM DD, YYYY [11:59:59 PM]`;
+    },
+  },
 }
           
 /**

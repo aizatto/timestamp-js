@@ -52,6 +52,7 @@ function App() {
     useRef({} as CopyHandler), // 5
     useRef({} as CopyHandler), // 6
     useRef({} as CopyHandler), // 7
+    useRef({} as CopyHandler), // 8
   ];
 
   const setTimestamps = (newDate: Date) => {

@@ -25,7 +25,7 @@ export default function Navbar() {
             <NavLink href="https://www.aizatto.com/">aizatto.com</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="https://booktools.app/">Book Tools</NavLink>
+            <NavLink href="https://build.my/">build.my</NavLink>
           </NavItem>
           <NavItem>
             <NavLink href="https://www.deepthoughtapp.com/">Deep Thought</NavLink>
