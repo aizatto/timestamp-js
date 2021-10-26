@@ -5,6 +5,7 @@ import {
   QuestionOutlined,
   ExperimentOutlined,
   FileAddOutlined,
+  HistoryOutlined,
 } from "@ant-design/icons";
 
 export const Menu: React.FC = () => {
@@ -53,6 +54,11 @@ export const Menu: React.FC = () => {
           rel="noopener noreferrer"
         >
           LinkedIn
+        </a>
+      </AntMenu.Item>
+      <AntMenu.Item key="v1" icon={<HistoryOutlined />}>
+        <a href="/v1" rel="noopener noreferrer">
+          v1
         </a>
       </AntMenu.Item>
     </AntMenu>

@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "https://timestamps.aizatto.com/v1/static/css/main.13234fec.chunk.css",
+    "main.js": "https://timestamps.aizatto.com/v1/static/js/main.3519740c.chunk.js",
+    "main.js.map": "https://timestamps.aizatto.com/v1/static/js/main.3519740c.chunk.js.map",
+    "runtime~main.js": "https://timestamps.aizatto.com/v1/static/js/runtime~main.b9a6f072.js",
+    "runtime~main.js.map": "https://timestamps.aizatto.com/v1/static/js/runtime~main.b9a6f072.js.map",
+    "static/css/2.cc034990.chunk.css": "https://timestamps.aizatto.com/v1/static/css/2.cc034990.chunk.css",
+    "static/js/2.122822eb.chunk.js": "https://timestamps.aizatto.com/v1/static/js/2.122822eb.chunk.js",
+    "static/js/2.122822eb.chunk.js.map": "https://timestamps.aizatto.com/v1/static/js/2.122822eb.chunk.js.map",
+    "index.html": "https://timestamps.aizatto.com/v1/index.html",
+    "precache-manifest.368ff7928ad09ad6ab8192e85badb7d8.js": "https://timestamps.aizatto.com/v1/precache-manifest.368ff7928ad09ad6ab8192e85badb7d8.js",
+    "service-worker.js": "https://timestamps.aizatto.com/v1/service-worker.js",
+    "static/css/2.cc034990.chunk.css.map": "https://timestamps.aizatto.com/v1/static/css/2.cc034990.chunk.css.map",
+    "static/css/main.13234fec.chunk.css.map": "https://timestamps.aizatto.com/v1/static/css/main.13234fec.chunk.css.map"
+  }
+}

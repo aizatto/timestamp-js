@@ -124,7 +124,7 @@ export const Page: React.FC = () => {
         onOpenChange={(open) => {
           setDisableKeyboardShortcut(open);
         }}
-      />
+      />{" "}
       <Radio.Group
         onChange={(e) => {
           const value = e.target.value;
