@@ -4,10 +4,11 @@ import React, { useEffect, useState } from "react";
 import { CopyOutlined } from "@ant-design/icons";
 import copy from "copy-to-clipboard";
 import { KeyboardShortcuts, KeyCode } from "./keyboard";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 export const Page: React.FC = () => {
   let [date, setDate] = useState(moment());
-  let [displayTimezones, setDisplayTimezones] = useState(true);
+  let [displayTimezones, setDisplayTimezones] = useLocalStorage('display-timezones', true);
   let [inputs, setInputs] = useState<React.ReactNode[]>();
   let [disableKeyboardShortcut, setDisableKeyboardShortcut] = useState(false);
 

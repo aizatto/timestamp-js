@@ -40,7 +40,7 @@ export const Menu: React.FC = () => {
       </AntMenu.Item>
       <AntMenu.Item key="github" icon={<GithubOutlined />}>
         <a
-          href="https://www.github.com/aizatto/"
+          href="https://www.github.com/aizatto/timestamp-js/"
           target="_blank"
           rel="noopener noreferrer"
         >
