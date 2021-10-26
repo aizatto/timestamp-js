@@ -1,0 +1,18 @@
+@import "~antd/dist/antd.css";
+
+#page {
+  padding: 1rem;
+}
+
+ul.inputs {
+  padding: 8px 0;
+}
+
+ul.inputs li {
+  list-style-type: none;
+  margin-bottom: 16px;
+}
+
+.input {
+  display: flex;
+}

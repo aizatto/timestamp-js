@@ -3,6 +3,7 @@
 I use timestamps in a lot of my documents, so I want an easy way for me to copy timestamps.
 
 See:
+
 - https://timestamps.aizatto.com/
 - https://vigilant-hodgkin-ddfa51.netlify.com/
 - https://aizatto.github.io/timestamp-js/
@@ -15,7 +16,8 @@ This is a list of my commonly used timestamps.
 
 Also experimenting with netlify to easily host simple demos.
 
-# Possible Optimizations
+# Install githooks
 
-- Move to SSR, currently using React for ease of use
-  - Have to move "Copy" feature to frontend JS
+```sh
+git config core.hooksPath .githooks
+```
