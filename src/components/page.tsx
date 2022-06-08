@@ -5,6 +5,7 @@ import { CopyOutlined } from "@ant-design/icons";
 import copy from "copy-to-clipboard";
 import { KeyboardShortcuts, KeyCode } from "./keyboard";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { dayOfYear } from '../dayOfYear'
 
 export const Page: React.FC = () => {
   let [date, setDate] = useState(moment());
@@ -14,7 +15,6 @@ export const Page: React.FC = () => {
 
   const copyFromFormats = (index: number) => {
     const format = formats[index];
-    console.log({ index, format });
     const momentformat = displayTimezones
       ? format.withTimezone
       : format.withoutTimezone;
@@ -42,12 +42,10 @@ export const Page: React.FC = () => {
         KeyCode.DIGIT_1 <= event.keyCode &&
         event.keyCode <= KeyCode.DIGIT_9
       ) {
-        console.log("copy");
         const index = event.keyCode - KeyCode.DIGIT_1;
         copyFromFormats(index);
       }
       if (event.keyCode === KeyCode.T || event.keyCode === KeyCode.t) {
-        console.log("toggle timezones");
         setDisplayTimezones(!displayTimezones);
       } else if (KeyCode.A <= event.keyCode && event.keyCode <= KeyCode.Z) {
         setDate(moment());
@@ -61,15 +59,17 @@ export const Page: React.FC = () => {
     // eslint-disable-next-line
   }, [disableKeyboardShortcut, displayTimezones]);
 
+  const doy = dayOfYear(date.toDate());
+
   const formats = [
     {
-      withTimezone: "YYYY/MM/DD [W]W/[D]E dddd MMMM Do - [D]300/366[R] LTS Z: ",
+      withTimezone: `YYYY/MM/DD [W]W/[D]E dddd MMMM Do - [D]${doy}/366[R] LTS Z: `,
       withoutTimezone:
-        "YYYY/MM/DD [W]W/[D]E dddd MMMM Do - [D]300/366[R] LTS: ",
+        `YYYY/MM/DD [W]W/[D]E dddd MMMM Do - [D]${doy}/366[R] LTS: `,
     },
     {
-      withTimezone: "YYYY/MM/DD [W]W/[D]E dddd MMMM Do - [D]300/366[R]",
-      withoutTimezone: "YYYY/MM/DD [W]W/[D]E dddd MMMM Do - [D]300/366[R]",
+      withTimezone: `YYYY/MM/DD [W]W/[D]E dddd MMMM Do - [D]${doy}/366[R]`,
+      withoutTimezone: `YYYY/MM/DD [W]W/[D]E dddd MMMM Do - [D]${doy}/366[R]`,
     },
     {
       withTimezone: "LTS Z: ",
