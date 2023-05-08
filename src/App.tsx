@@ -1,4 +1,3 @@
-import React from "react";
 import "./App.css";
 import { Menu } from "./components/menu";
 import { Page } from "./components/page";

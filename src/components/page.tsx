@@ -1,15 +1,22 @@
 import { Button, DatePicker, Input, Radio, message } from "antd";
-import moment from "moment-timezone";
 import React, { useEffect, useState } from "react";
 import { CopyOutlined } from "@ant-design/icons";
 import copy from "copy-to-clipboard";
 import { KeyboardShortcuts, KeyCode } from "./keyboard";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import { dayOfYear } from '../dayOfYear'
+import { dayOfYear } from "../dayOfYear";
+
+import dayjs from "dayjs";
+import isoWeek from "dayjs/plugin/isoWeek";
+
+dayjs.extend(isoWeek);
 
 export const Page: React.FC = () => {
-  let [date, setDate] = useState(moment());
-  let [displayTimezones, setDisplayTimezones] = useLocalStorage('display-timezones', true);
+  let [date, setDate] = useState(dayjs());
+  let [displayTimezones, setDisplayTimezones] = useLocalStorage(
+    "display-timezones",
+    true
+  );
   let [inputs, setInputs] = useState<React.ReactNode[]>();
   let [disableKeyboardShortcut, setDisableKeyboardShortcut] = useState(false);
 
@@ -48,7 +55,7 @@ export const Page: React.FC = () => {
       if (event.keyCode === KeyCode.T || event.keyCode === KeyCode.t) {
         setDisplayTimezones(!displayTimezones);
       } else if (KeyCode.A <= event.keyCode && event.keyCode <= KeyCode.Z) {
-        setDate(moment());
+        setDate(dayjs());
       }
     };
 
@@ -56,7 +63,6 @@ export const Page: React.FC = () => {
     return () => {
       window.removeEventListener("keydown", listener);
     };
-    // eslint-disable-next-line
   }, [disableKeyboardShortcut, displayTimezones]);
 
   const doy = dayOfYear(date.toDate());
@@ -64,8 +70,7 @@ export const Page: React.FC = () => {
   const formats = [
     {
       withTimezone: `YYYY/MM/DD [W]W/[D]E dddd MMMM Do - [D]${doy}/366[R] LTS Z: `,
-      withoutTimezone:
-        `YYYY/MM/DD [W]W/[D]E dddd MMMM Do - [D]${doy}/366[R] LTS: `,
+      withoutTimezone: `YYYY/MM/DD [W]W/[D]E dddd MMMM Do - [D]${doy}/366[R] LTS: `,
     },
     {
       withTimezone: `YYYY/MM/DD [W]W/[D]E dddd MMMM Do - [D]${doy}/366[R]`,
@@ -79,11 +84,12 @@ export const Page: React.FC = () => {
 
   useEffect(() => {
     const newInputs = formats.map((format, index) => {
-      const momentformat = displayTimezones
+      const dateformat = displayTimezones
         ? format.withTimezone
         : format.withoutTimezone;
 
-      const value = date.format(momentformat);
+      const value = date.format(dateformat);
+      // const value = ''
 
       const onClick = () => {
         copyFromFormats(index);
@@ -92,7 +98,7 @@ export const Page: React.FC = () => {
       return (
         <li key={`format-${index}`}>
           <code>
-            {index + 1}: moment().format("{momentformat}")
+            {index + 1}: moment().format("{dateformat}")
           </code>
           <div className="input">
             <Button type="primary" icon={<CopyOutlined />} onClick={onClick} />
@@ -158,9 +164,6 @@ export const Page: React.FC = () => {
               <a href="https://ant.design/components/menu/">Menu</a>
             </li>
           </ul>
-        </li>
-        <li>
-          <a href="http://momentjs.com/">Moment</a>
         </li>
       </ul>
     </div>
