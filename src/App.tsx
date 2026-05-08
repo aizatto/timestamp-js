@@ -7,10 +7,13 @@ import {
   PRESET_SECTIONS,
   TRACKED_PRESETS,
   type TimestampPreset,
-  formatReferenceLabel,
 } from "@/lib/presets"
 import { loadUsageCounts, saveUsageCounts } from "@/lib/storage"
-import { parseDateTimeLocalValue, toDateTimeLocalValue } from "@/lib/time"
+import {
+  formatReferenceLabel,
+  parseDateTimeLocalValue,
+  toDateTimeLocalValue,
+} from "@/lib/time"
 
 async function copyToClipboard(value: string): Promise<void> {
   if (navigator.clipboard?.writeText) {
@@ -72,7 +75,7 @@ function App() {
     await copyToClipboard(value)
 
     setCopiedPresetId(preset.id)
-    setStatusMessage(`Copied ${preset.title}: ${value}`)
+    setStatusMessage(`Copied ${value}`)
 
     if (preset.trackUsage) {
       setUsageCounts((current) => {
@@ -192,7 +195,7 @@ function App() {
 
           <PresetSection
             title="Frequently used"
-            description="Ranked by your local usage count and mapped to `1-9`."
+            description={undefined}
             presets={frequentPresets}
             selectedDate={selectedDate}
             onCopy={(preset) => {

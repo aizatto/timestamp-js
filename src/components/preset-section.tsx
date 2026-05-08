@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 
 type PresetSectionProps = {
   title: string
-  description: string
+  description?: string
   presets: TimestampPreset[]
   selectedDate: Date
   onCopy: (preset: TimestampPreset) => void
@@ -30,12 +30,18 @@ export function PresetSection({
         <h2 className="text-sm font-semibold tracking-wide text-foreground uppercase">
           {title}
         </h2>
-        <p className="text-sm text-muted-foreground">{description}</p>
+        {description ? (
+          <p className="text-sm text-muted-foreground">{description}</p>
+        ) : null}
       </div>
       <div className="rounded-md border border-border bg-background">
         {presets.map((preset, index) => {
           const value = preset.copy(selectedDate)
           const isCopied = copiedPresetId === preset.id
+          const expression =
+            typeof preset.expression === "function"
+              ? preset.expression(selectedDate)
+              : preset.expression
 
           return (
             <div key={preset.id}>
@@ -48,12 +54,11 @@ export function PresetSection({
                         {index + 1}
                       </span>
                     ) : null}
-                    <h3 className="font-medium text-foreground">{preset.title}</h3>
-                    <span className="truncate text-xs text-muted-foreground">
-                      {preset.description}
-                    </span>
+                    <code className="min-w-0 truncate font-mono text-[12px] text-foreground">
+                      {expression}
+                    </code>
                   </div>
-                  <code className="block overflow-x-auto rounded-sm bg-muted px-2.5 py-2 font-mono text-[13px] leading-5 break-all text-foreground">
+                  <code className="block overflow-x-auto rounded-sm bg-muted px-2.5 py-2 font-mono text-[13px] leading-5 break-all whitespace-pre-wrap text-foreground">
                     {value}
                   </code>
                 </div>
