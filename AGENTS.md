@@ -19,6 +19,7 @@
 ## Documentation Layout
 - Implementation plans live in `docs/plans/`.
 - ADRs live in `docs/adr/`.
+- Product requirements and UX references live in `docs/prd/`.
 - Use plan folders shaped like `docs/plans/YYYY-MM-DD HH-MM <title>/`.
 - Each plan folder must contain:
   - `plan.md`
