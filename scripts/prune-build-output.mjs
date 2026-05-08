@@ -8,4 +8,5 @@ if (!outputDir) {
 }
 
 await rm(path.join(outputDir, "v1"), { force: true, recursive: true })
+await rm(path.join(outputDir, "v2"), { force: true, recursive: true })
 await rm(path.join(outputDir, "v3"), { force: true, recursive: true })

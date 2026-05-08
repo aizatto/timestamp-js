@@ -1,10 +1,7 @@
 import { useEffect, useEffectEvent, useRef, useState } from "react"
-import { CalendarClock, History, Layers2 } from "lucide-react"
 
 import { ControlPanel } from "@/components/control-panel"
 import { PresetSection } from "@/components/preset-section"
-import { Badge } from "@/components/ui/badge"
-import { Separator } from "@/components/ui/separator"
 import {
   PRESETS,
   PRESET_SECTIONS,
@@ -46,6 +43,13 @@ function isTypingTarget(target: EventTarget | null): boolean {
 }
 
 function App() {
+  const navLinks = [
+    { href: "/v1/", label: "v1" },
+    { href: "/v2/", label: "v2" },
+    { href: "/v3/", label: "v3" },
+    { href: "https://github.com/aizatto/timestamp-js", label: "GitHub" },
+    { href: "https://www.linkedin.com/in/aizatto", label: "LinkedIn" },
+  ]
   const [selectedDate, setSelectedDate] = useState(() => new Date())
   const [inputValue, setInputValue] = useState(() => toDateTimeLocalValue(new Date()))
   const [usageCounts, setUsageCounts] = useState(loadUsageCounts)
@@ -149,57 +153,46 @@ function App() {
   }, [])
 
   return (
-    <main className="min-h-screen bg-[linear-gradient(180deg,#f7f3eb_0%,#fbfaf8_22%,#fff_100%)] text-foreground">
-      <div className="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-4 py-6 sm:px-6 lg:px-8 lg:py-10">
-        <div className="flex-1 space-y-6">
+    <main className="min-h-screen bg-background text-foreground">
+      <div className="mx-auto flex min-h-screen w-full max-w-5xl flex-col px-4 py-4 sm:px-6">
+        <header className="border-b border-border py-3">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
+            <a href="https://www.aizatto.com/" className="font-medium text-foreground">
+              aizatto.com
+            </a>
+            <nav className="flex flex-wrap items-center gap-x-4 gap-y-2 text-muted-foreground">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="transition-colors hover:text-foreground"
+                  target={link.href.startsWith("http") ? "_blank" : undefined}
+                  rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+        </header>
+
+        <div className="flex-1 space-y-5 py-5">
           <ControlPanel
             selectedValue={inputValue}
             onChange={handleInputChange}
             onRefresh={handleRefresh}
           />
 
-          <section className="grid gap-4 lg:grid-cols-[minmax(0,1.4fr)_minmax(18rem,0.8fr)]">
-            <div className="rounded-[28px] border border-border/70 bg-card/90 p-5 shadow-sm backdrop-blur sm:p-6">
-              <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                <CalendarClock className="size-4 text-muted-foreground" />
-                Selected timestamp
-              </div>
-              <div className="mt-3 space-y-2">
-                <div className="font-heading text-2xl tracking-tight sm:text-3xl">
-                  {formatReferenceLabel(selectedDate)}
-                </div>
-                <p className="text-sm leading-6 text-muted-foreground">
-                  Local reference output for quick visual confirmation before you copy.
-                </p>
-              </div>
-            </div>
-
-            <div className="rounded-[28px] border border-border/70 bg-card/90 p-5 shadow-sm backdrop-blur sm:p-6">
-              <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                <History className="size-4 text-muted-foreground" />
-                Clipboard status
-              </div>
-              <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                {statusMessage}
-              </p>
-              <Separator className="my-4" />
-              <div className="flex flex-wrap gap-2">
-                {frequentPresets.slice(0, 3).map((preset) => (
-                  <Badge
-                    key={preset.id}
-                    variant="outline"
-                    className="rounded-full px-3 py-1"
-                  >
-                    {preset.title}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-          </section>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
+            <span className="font-mono text-foreground">
+              {formatReferenceLabel(selectedDate)}
+            </span>
+            <span>{statusMessage}</span>
+          </div>
 
           <PresetSection
             title="Frequently used"
-            description="These are ranked by your local usage count and mapped to the 1-9 shortcuts."
+            description="Ranked by your local usage count and mapped to `1-9`."
             presets={frequentPresets}
             selectedDate={selectedDate}
             onCopy={(preset) => {
@@ -209,7 +202,7 @@ function App() {
             ranked
           />
 
-          <section className="grid gap-6 xl:grid-cols-2">
+          <section className="grid gap-5 lg:grid-cols-2">
             {PRESET_SECTIONS.map((section) => (
               <PresetSection
                 key={section.id}
@@ -223,26 +216,6 @@ function App() {
                 copiedPresetId={copiedPresetId}
               />
             ))}
-          </section>
-
-          <section className="rounded-[28px] border border-border/70 bg-card/90 p-5 shadow-sm backdrop-blur sm:p-6">
-            <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
-              <Layers2 className="size-4 text-muted-foreground" />
-              Notes on the rewrite
-            </div>
-            <div className="mt-4 grid gap-3 text-sm leading-6 text-muted-foreground md:grid-cols-3">
-              <p>
-                <code className="rounded bg-muted px-1.5 py-0.5">public/v1</code> remains the historical archive.
-              </p>
-              <p>
-                <code className="rounded bg-muted px-1.5 py-0.5">v3</code> runs on React 19, TypeScript 6, Tailwind v4, and{" "}
-                <code className="rounded bg-muted px-1.5 py-0.5">shadcn/ui</code>.
-              </p>
-              <p>
-                The archive build publishes a static <code className="rounded bg-muted px-1.5 py-0.5">/v3/</code> site into{" "}
-                <code className="rounded bg-muted px-1.5 py-0.5">public/v3</code>.
-              </p>
-            </div>
           </section>
         </div>
       </div>
