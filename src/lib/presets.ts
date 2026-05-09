@@ -7,6 +7,7 @@ import {
   formatMomentMonthDayEnd,
   formatMomentWeekCode,
   formatMomentWeekdayMultiline,
+  normalizedDayOfYear,
   strftimeCompact,
   strftimeDate,
   strftimeDateTimeLower,
@@ -24,9 +25,7 @@ export type TimestampPreset = {
 }
 
 function withDayProgress(formatString: string, date: Date): string {
-  const dayOfYear = String(
-    Math.ceil((date.getTime() - new Date(date.getFullYear(), 0, 0).getTime()) / 86400000)
-  ).padStart(3, "0")
+  const dayOfYear = String(normalizedDayOfYear(date)).padStart(3, "0")
 
   return formatString.replaceAll("130", dayOfYear)
 }

@@ -30,6 +30,7 @@ The first section is intentionally modeled after the old moment-based output set
 - Expression lines shown in the UI must match the `v1`-style reference strings closely enough to remain recognizable.
 - Output values must follow the semantic shape of the original `v1` set for the selected local date/time.
 - The multiline formatter must preserve its line break in both display and copy output.
+- The `Dxxx/366R` token uses normalized `Date of Year` semantics, where the same month/day maps to the same DOY in leap and non-leap years.
 
 ## Actual `v1` Expression Set
 
@@ -119,4 +120,5 @@ Example output:
 - The `Date` section exposes the three JavaScript `Date` references above.
 - The `strftime` section exposes the four reference expressions above.
 - Copy output matches the displayed value exactly.
+- `DOY` is normalized across leap and non-leap years for the same month/day.
 - Changes to the formatter list should update both this document and the implementation together.
