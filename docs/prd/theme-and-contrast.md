@@ -23,7 +23,8 @@ The UI should remain minimal and utility-focused, but the default light presenta
   - `Light`
   - `Dark`
   - `System`
-- The selected theme mode must persist locally.
+- The selected theme mode must persist in `localStorage`.
+- On page load, the app must restore the saved theme choice from `localStorage` before applying the effective theme.
 - `System` mode must follow the OS/browser `prefers-color-scheme` setting.
 - If the system theme changes while the app is open and the user is in `system` mode, the app should update automatically.
 
@@ -48,7 +49,7 @@ The UI should remain minimal and utility-focused, but the default light presenta
 ## Acceptance Criteria
 
 - Users can switch between `light`, `dark`, and `system` from the top bar.
-- The selected mode persists across reloads.
+- The selected mode persists across reloads via `localStorage`.
 - `System` mode updates when the OS theme changes.
 - Light mode has visibly more contrast than the earlier mostly-white treatment.
 - The app remains minimal and does not become visually heavy after the contrast update.
