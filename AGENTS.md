@@ -52,3 +52,10 @@ Examples of ADR-worthy changes:
 ## Release Verification
 - Any change touching output paths or asset URLs must be verified in both `dist/` and `public/v3/`.
 - The main build flow should continue to produce both the normal app build and the archive build.
+
+## Git and PR Conventions
+- Use conventional commits for commit messages.
+- Use conventional commit style for PR titles as well, for example:
+  - `feat(v3): rebuild timestamps app with archived outputs`
+  - `fix(formats): restore v1 reference sections`
+- When creating PRs, keep the PR title aligned with the overall change scope rather than copying an arbitrary intermediate commit.
