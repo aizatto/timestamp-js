@@ -7,6 +7,12 @@ if (!outputDir) {
   throw new Error("Expected an output directory argument.")
 }
 
-await rm(path.join(outputDir, "v1"), { force: true, recursive: true })
-await rm(path.join(outputDir, "v2"), { force: true, recursive: true })
+const resolvedOutputDir = path.resolve(outputDir)
+const isArchiveBuild = resolvedOutputDir.endsWith(path.join(".tmp", "archive"))
+
+if (isArchiveBuild) {
+  await rm(path.join(outputDir, "v1"), { force: true, recursive: true })
+  await rm(path.join(outputDir, "v2"), { force: true, recursive: true })
+}
+
 await rm(path.join(outputDir, "v3"), { force: true, recursive: true })
