@@ -15,20 +15,14 @@ export function ControlPanel({
   onRefresh,
 }: ControlPanelProps) {
   return (
-    <section className="space-y-3">
-      <div className="space-y-1">
+    <section className="space-y-2">
+      <div>
         <h1 className="font-heading text-2xl tracking-tight text-foreground sm:text-3xl">
           Timestamps
         </h1>
-        <p className="text-sm text-muted-foreground">
-          Fast local timestamp formats with ranked copy shortcuts.
-        </p>
       </div>
       <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
-        <label className="grid gap-1.5 text-sm">
-          <span className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
-            Selected local time
-          </span>
+        <label className="block">
           <Input
             type="datetime-local"
             step={1}
