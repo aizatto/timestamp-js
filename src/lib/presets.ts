@@ -1,12 +1,12 @@
 import {
-  formatMomentDateLtsWeekday,
-  formatMomentDateLtsWeekdayDayProgress,
-  formatMomentLongWeekday,
-  formatMomentLongWeekdayLts,
-  formatMomentLts,
-  formatMomentMonthDayEnd,
-  formatMomentWeekCode,
-  formatMomentWeekdayMultiline,
+  formatLegacyDateLtsWeekday,
+  formatLegacyDateLtsWeekdayDayProgress,
+  formatLegacyLongWeekday,
+  formatLegacyLongWeekdayLts,
+  formatLegacyLts,
+  formatLegacyMonthDayEnd,
+  formatLegacyWeekCode,
+  formatLegacyWeekdayMultiline,
   normalizedDayOfYear,
   strftimeCompact,
   strftimeDate,
@@ -36,7 +36,7 @@ export const PRESETS: TimestampPreset[] = [
     expression: (date) =>
       withDayProgress("YYYY/MM/DD [W]W/[D]E dddd MMMM Do - [D]130/366[R]", date),
     section: "frequently-used",
-    copy: formatMomentLongWeekday,
+    copy: formatLegacyLongWeekday,
     trackUsage: true,
   },
   {
@@ -44,21 +44,21 @@ export const PRESETS: TimestampPreset[] = [
     expression: (date) =>
       withDayProgress("YYYY/MM/DD [W]W/[D]E dddd MMMM Do - [D]130/366[R] LTS:", date),
     section: "frequently-used",
-    copy: formatMomentLongWeekdayLts,
+    copy: formatLegacyLongWeekdayLts,
     trackUsage: true,
   },
   {
     id: "moment-lts",
     expression: "LTS: ",
     section: "frequently-used",
-    copy: (date) => `${formatMomentLts(date)}: `,
+    copy: (date) => `${formatLegacyLts(date)}: `,
     trackUsage: true,
   },
   {
     id: "moment-week-code",
     expression: "YYYY[W]W: YYYY/MM/DD",
     section: "frequently-used",
-    copy: formatMomentWeekCode,
+    copy: formatLegacyWeekCode,
     trackUsage: true,
   },
   {
@@ -66,14 +66,14 @@ export const PRESETS: TimestampPreset[] = [
     expression: (date) =>
       withDayProgress("YYYY/MM/DD LTS - [W]W/[D]E dddd - [D]130/366[R]", date),
     section: "frequently-used",
-    copy: formatMomentDateLtsWeekdayDayProgress,
+    copy: formatLegacyDateLtsWeekdayDayProgress,
     trackUsage: true,
   },
   {
     id: "moment-month-day-end",
     expression: "MMMM DD, YYYY [11:59:59 PM]",
     section: "frequently-used",
-    copy: formatMomentMonthDayEnd,
+    copy: formatLegacyMonthDayEnd,
     trackUsage: true,
   },
   {
@@ -81,14 +81,14 @@ export const PRESETS: TimestampPreset[] = [
     expression: (date) =>
       withDayProgress("YYYY/MM/DD [W]W/[D]E dddd - [D]130/366[R] [\\n]LTS: ", date),
     section: "frequently-used",
-    copy: formatMomentWeekdayMultiline,
+    copy: formatLegacyWeekdayMultiline,
     trackUsage: true,
   },
   {
     id: "moment-date-lts-weekday",
     expression: "YYYY/MM/DD LTS - [W]W/[D]E dddd",
     section: "frequently-used",
-    copy: formatMomentDateLtsWeekday,
+    copy: formatLegacyDateLtsWeekday,
     trackUsage: true,
   },
   {

@@ -54,51 +54,51 @@ export function formatWeekStamp(date: Date): string {
 }
 
 export function formatReferenceLabel(date: Date): string {
-  return `${format(date, "yyyy/MM/dd")} ${formatMomentWeekdayCore(date)}`
+  return `${format(date, "yyyy/MM/dd")} ${formatLegacyWeekdayCore(date)}`
 }
 
-export function formatMomentLts(date: Date): string {
+export function formatLegacyLts(date: Date): string {
   return format(date, "h:mm:ss a")
 }
 
-export function formatMomentDayProgress(date: Date): string {
+export function formatLegacyDayProgress(date: Date): string {
   return `D${formatDayProgress(date)}R`
 }
 
-export function formatMomentWeekdayCore(date: Date): string {
+export function formatLegacyWeekdayCore(date: Date): string {
   return `${formatWeekStamp(date)} ${format(date, "EEEE")}`
 }
 
-export function formatMomentWeekday(date: Date): string {
-  return `${format(date, "yyyy/MM/dd")} ${formatMomentWeekdayCore(date)}`
+export function formatLegacyWeekday(date: Date): string {
+  return `${format(date, "yyyy/MM/dd")} ${formatLegacyWeekdayCore(date)}`
 }
 
-export function formatMomentLongWeekday(date: Date): string {
-  return `${formatMomentWeekday(date)} ${format(date, "MMMM do")} - ${formatMomentDayProgress(date)}`
+export function formatLegacyLongWeekday(date: Date): string {
+  return `${formatLegacyWeekday(date)} ${format(date, "MMMM do")} - ${formatLegacyDayProgress(date)}`
 }
 
-export function formatMomentLongWeekdayLts(date: Date): string {
-  return `${formatMomentLongWeekday(date)} ${formatMomentLts(date)}:`
+export function formatLegacyLongWeekdayLts(date: Date): string {
+  return `${formatLegacyLongWeekday(date)} ${formatLegacyLts(date)}:`
 }
 
-export function formatMomentDateLtsWeekday(date: Date): string {
-  return `${format(date, "yyyy/MM/dd")} ${formatMomentLts(date)} - ${formatMomentWeekdayCore(date)}`
+export function formatLegacyDateLtsWeekday(date: Date): string {
+  return `${format(date, "yyyy/MM/dd")} ${formatLegacyLts(date)} - ${formatLegacyWeekdayCore(date)}`
 }
 
-export function formatMomentDateLtsWeekdayDayProgress(date: Date): string {
-  return `${formatMomentDateLtsWeekday(date)} - ${formatMomentDayProgress(date)}`
+export function formatLegacyDateLtsWeekdayDayProgress(date: Date): string {
+  return `${formatLegacyDateLtsWeekday(date)} - ${formatLegacyDayProgress(date)}`
 }
 
-export function formatMomentWeekCode(date: Date): string {
+export function formatLegacyWeekCode(date: Date): string {
   return `${date.getFullYear()}W${getISOWeek(date)}: ${format(date, "yyyy/MM/dd")}`
 }
 
-export function formatMomentMonthDayEnd(date: Date): string {
+export function formatLegacyMonthDayEnd(date: Date): string {
   return `${format(date, "MMMM dd, yyyy")} 11:59:59 PM`
 }
 
-export function formatMomentWeekdayMultiline(date: Date): string {
-  return `${formatMomentWeekday(date)} - ${formatMomentDayProgress(date)}\n${formatMomentLts(date)}: `
+export function formatLegacyWeekdayMultiline(date: Date): string {
+  return `${formatLegacyWeekday(date)} - ${formatLegacyDayProgress(date)}\n${formatLegacyLts(date)}: `
 }
 
 export function strftimeTimeLower(date: Date): string {
