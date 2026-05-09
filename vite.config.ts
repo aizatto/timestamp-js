@@ -1,7 +1,15 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
+import path from 'node:path'
+import tailwindcss from '@tailwindcss/vite'
+import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite'
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-});
+// https://vite.dev/config/
+export default defineConfig(({ mode }) => ({
+  base: mode === 'archive' ? '/v3/' : '/',
+  plugins: [react(), tailwindcss()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
+}))
