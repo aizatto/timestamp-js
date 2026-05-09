@@ -11,6 +11,8 @@ It exists to prevent drift between:
 
 For formatter parity work, this document is the product reference. The code implementation may use native `Date`, `Intl`, `date-fns`, or other helpers internally, but the user-facing sections and outputs should map back to this shape.
 
+The UI should not imply that Moment is the active runtime formatter. These are legacy `v1`-compatible format references, not evidence that `v3` uses `moment()`.
+
 ## Product Goal
 
 `v3` should keep the compact utility feel of `v1` while preserving the recognizable expression groups that existing users rely on:
@@ -28,6 +30,7 @@ The first section is intentionally modeled after the old moment-based output set
   - `strftime`
 - The `Frequently Used` section must support ranked copy shortcuts `1-9`.
 - Expression lines shown in the UI must match the `v1`-style reference strings closely enough to remain recognizable.
+- The `Frequently Used` reference labels should be presented as `v1`-compatible format references, not literal `moment().format(...)` implementation statements.
 - Output values must follow the semantic shape of the original `v1` set for the selected local date/time.
 - The multiline formatter must preserve its line break in both display and copy output.
 - The `Dxxx/366R` token uses normalized `Date of Year` semantics, where the same month/day maps to the same DOY in leap and non-leap years.
@@ -36,38 +39,42 @@ The first section is intentionally modeled after the old moment-based output set
 
 ### Frequently Used
 
-1. `moment().format("YYYY/MM/DD [W]W/[D]E dddd MMMM Do - [D]130/366[R]")`
+Display convention in `v3`:
+- prefix these with `v1-compatible format:`
+- do not present them as live `moment().format(...)` calls in the UI
+
+1. `YYYY/MM/DD [W]W/[D]E dddd MMMM Do - [D]130/366[R]`
 Example output:
 `2026/05/09 W19/D6 Saturday May 9th - D130/366R`
 
-2. `moment().format("YYYY/MM/DD [W]W/[D]E dddd MMMM Do - [D]130/366[R] LTS:")`
+2. `YYYY/MM/DD [W]W/[D]E dddd MMMM Do - [D]130/366[R] LTS:`
 Example output:
 `2026/05/09 W19/D6 Saturday May 9th - D130/366R 6:38:27 AM:`
 
-3. `moment().format("LTS: ")`
+3. `LTS: `
 Example output:
 `6:38:27 AM: `
 
-4. `moment().format("YYYY[W]W: YYYY/MM/DD")`
+4. `YYYY[W]W: YYYY/MM/DD`
 Example output:
 `2026W19: 2026/05/09`
 
-5. `moment().format("YYYY/MM/DD LTS - [W]W/[D]E dddd - [D]130/366[R]")`
+5. `YYYY/MM/DD LTS - [W]W/[D]E dddd - [D]130/366[R]`
 Example output:
 `2026/05/09 6:38:27 AM - W19/D6 Saturday - D130/366R`
 
-6. `moment().format("MMMM DD, YYYY [11:59:59 PM]")`
+6. `MMMM DD, YYYY [11:59:59 PM]`
 Example output:
 `May 09, 2026 11:59:59 PM`
 
-7. `moment().format("YYYY/MM/DD [W]W/[D]E dddd - [D]130/366[R] [\n]LTS: ")`
+7. `YYYY/MM/DD [W]W/[D]E dddd - [D]130/366[R] [\n]LTS: `
 Example output:
 ```text
 2026/05/09 W19/D6 Saturday - D130/366R
 6:38:27 AM: 
 ```
 
-8. `moment().format("YYYY/MM/DD LTS - [W]W/[D]E dddd")`
+8. `YYYY/MM/DD LTS - [W]W/[D]E dddd`
 Example output:
 `2026/05/09 6:38:27 AM - W19/D6 Saturday`
 
