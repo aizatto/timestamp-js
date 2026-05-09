@@ -11,7 +11,7 @@ It exists to prevent drift between:
 
 For formatter parity work, this document is the product reference. The code implementation may use native `Date`, `Intl`, `date-fns`, or other helpers internally, but the user-facing sections and outputs should map back to this shape.
 
-The UI should not imply that Moment is the active runtime formatter. These are legacy `v1`-compatible format references, not evidence that `v3` uses `moment()`.
+The UI should not imply that Moment is the active runtime formatter. These are legacy `v1` reference formats, not evidence that `v3` uses `moment()`.
 
 ## Product Goal
 
@@ -30,7 +30,7 @@ The first section is intentionally modeled after the old moment-based output set
   - `strftime`
 - The `Frequently Used` section must support ranked copy shortcuts `1-9`.
 - Expression lines shown in the UI must match the `v1`-style reference strings closely enough to remain recognizable.
-- The `Frequently Used` reference labels should be presented as `v1`-compatible format references, not literal `moment().format(...)` implementation statements.
+- The `Frequently Used` reference labels should be shown as plain format references, not literal `moment().format(...)` implementation statements.
 - Output values must follow the semantic shape of the original `v1` set for the selected local date/time.
 - The multiline formatter must preserve its line break in both display and copy output.
 - The `Dxxx/366R` token uses normalized `Date of Year` semantics, where the same month/day maps to the same DOY in leap and non-leap years.
@@ -40,7 +40,7 @@ The first section is intentionally modeled after the old moment-based output set
 ### Frequently Used
 
 Display convention in `v3`:
-- prefix these with `v1-compatible format:`
+- show these as plain format references
 - do not present them as live `moment().format(...)` calls in the UI
 
 1. `YYYY/MM/DD [W]W/[D]E dddd MMMM Do - [D]130/366[R]`
