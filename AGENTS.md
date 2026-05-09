@@ -14,6 +14,7 @@
 ## Source of Truth
 - Editable application code lives in `src/`.
 - `public/v1/` is a historical artifact and must not be modified.
+- `public/v2/` is a historical artifact and must not be modified.
 - `public/v3/` is generated output and must not be edited by hand.
 
 ## Documentation Layout

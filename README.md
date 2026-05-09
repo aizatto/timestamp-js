@@ -2,6 +2,10 @@
 
 `timestamp-js-v3` is the modern rewrite of the archived timestamps tool found in [public/v1](/Users/aizat/src/timestamp-js-v3/public/v1).
 
+Historical archives are kept in:
+- [public/v1](/Users/aizat/src/timestamp-js-v3/public/v1)
+- [public/v2](/Users/aizat/src/timestamp-js-v3/public/v2)
+
 It targets near-feature parity with `v1` while moving the app onto:
 - React 19
 - TypeScript 6
@@ -26,6 +30,7 @@ npm run build
 - `npm run build` runs typecheck plus both build targets.
 
 `public/v3/` is generated output and should not be edited by hand.
+`public/v1/` and `public/v2/` are historical archives and should not be copied into build outputs.
 
 ## Documentation Layout
 
