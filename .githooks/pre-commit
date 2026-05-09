@@ -1,0 +1,29 @@
+#!/bin/sh
+
+set -eu
+
+ROOT_DIR="$(git rev-parse --show-toplevel)"
+cd "$ROOT_DIR"
+
+echo "→ timestamp-js-v3: lint"
+npm run lint || {
+  echo "✗ lint failed"
+  exit 1
+}
+
+echo "→ timestamp-js-v3: typecheck"
+npm run typecheck > /dev/null || {
+  echo "✗ type-check failed"
+  exit 1
+}
+
+echo "→ timestamp-js-v3: build"
+npm run build > /dev/null || {
+  echo "✗ build failed"
+  exit 1
+}
+
+if ! git diff --quiet -- public/v3; then
+  echo "✗ build updated public/v3; stage the regenerated archive and retry the commit"
+  exit 1
+fi

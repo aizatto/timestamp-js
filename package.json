@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "hooks:install": "node scripts/setup-git-hooks.mjs",
+    "prepare": "node scripts/setup-git-hooks.mjs",
     "typecheck": "tsc -b",
     "build:app": "vite build && node scripts/prune-build-output.mjs dist",
     "build:archive": "vite build --mode archive --outDir .tmp/archive && node scripts/prune-build-output.mjs .tmp/archive && node scripts/sync-archive.mjs",

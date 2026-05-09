@@ -23,6 +23,8 @@ npm run typecheck
 npm run build
 ```
 
+`npm install` also runs `prepare`, which configures the repo-local Git hooks path to `.githooks`.
+
 ## Build Outputs
 
 - `npm run build:app` creates the standard Vite output in `dist/`.
@@ -31,6 +33,16 @@ npm run build
 
 `public/v3/` is generated output and should not be edited by hand.
 `public/v1/` and `public/v2/` are historical archives and should not be copied into build outputs.
+
+## Git Hooks
+
+The repo includes a pre-commit hook in `.githooks/pre-commit` that runs:
+
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+
+Because `build` regenerates tracked archive assets in `public/v3/`, the hook fails if that archive changes so you can stage the regenerated files and retry the commit.
 
 ## Documentation Layout
 

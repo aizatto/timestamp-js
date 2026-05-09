@@ -1,0 +1,7 @@
+node_modules
+dist
+.tmp
+.npm-cache
+public/v1
+public/v2
+public/v3
