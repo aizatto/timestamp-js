@@ -1,7 +1,6 @@
 import { format, getISOWeek } from "date-fns"
 
-const MS_IN_DAY = 24 * 60 * 60 * 1000
-const MARCH = 2
+const NORMALIZED_MONTH_LENGTHS = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 export function toDateTimeLocalValue(date: Date): string {
   const year = date.getFullYear()
@@ -28,21 +27,16 @@ export function parseDateTimeLocalValue(value: string): Date | null {
 }
 
 export function normalizedDayOfYear(date: Date): number {
-  const year = date.getFullYear()
-  const isLeapYear = year % 4 === 0
+  const month = date.getMonth()
+  const day = date.getDate()
 
-  const startOfYear = new Date(date.toString())
-  startOfYear.setFullYear(year, 0, 0)
-  startOfYear.setHours(0, 0, 0, 0)
+  let normalizedDays = day
 
-  const ms = date.getTime() - startOfYear.getTime()
-  const days = Math.floor(ms / MS_IN_DAY)
-
-  if (isLeapYear) {
-    return days
+  for (let currentMonth = 0; currentMonth < month; currentMonth += 1) {
+    normalizedDays += NORMALIZED_MONTH_LENGTHS[currentMonth]
   }
 
-  return date.getMonth() >= MARCH ? days + 1 : days
+  return normalizedDays
 }
 
 export function formatDayProgress(date: Date): string {

@@ -15,8 +15,8 @@ The goal is that the same month/day maps to the same `DOY` value regardless of w
 
 Examples:
 
-- March 1, 2020 -> `DOY 60`
-- March 1, 2021 -> `DOY 60`
+- March 1, 2020 -> `DOY 61`
+- March 1, 2021 -> `DOY 61`
 - May 9, 2026 -> `DOY 130`
 
 ## Why
@@ -36,30 +36,24 @@ This rule applies anywhere `DOY` or `Dxxx/366R` appears in the app, including:
 ## Reference Implementation
 
 ```ts
-const MS_IN_DAY = 24 * 60 * 60 * 1000;
-const MARCH = 2;
+const NORMALIZED_MONTH_LENGTHS = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 export function dayOfYear(date: Date): number {
-  const year = date.getFullYear();
-  const isLeapYear = year % 4 === 0;
+  const month = date.getMonth();
+  const day = date.getDate();
 
-  const startOfYear = new Date(date.toString());
-  startOfYear.setFullYear(year, 0, 0);
-  startOfYear.setHours(0, 0, 0, 0);
+  let normalizedDays = day;
 
-  const ms = date.getTime() - startOfYear.getTime();
-  const days = Math.floor(ms / MS_IN_DAY);
-
-  if (isLeapYear) {
-    return days;
+  for (let currentMonth = 0; currentMonth < month; currentMonth += 1) {
+    normalizedDays += NORMALIZED_MONTH_LENGTHS[currentMonth];
   }
 
-  return date.getMonth() >= MARCH ? days + 1 : days;
+  return normalizedDays;
 }
 ```
 
 ## Acceptance Criteria
 
-- March 1 returns `60` in both leap and non-leap years.
+- March 1 returns `61` in both leap and non-leap years.
 - Formatter outputs using `Dxxx/366R` use normalized `DOY`.
 - The displayed interpolated moment-style expression lines use the same normalized `DOY` value as the copied output.
