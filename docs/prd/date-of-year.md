@@ -12,11 +12,14 @@ The goal is that the same month/day maps to the same `DOY` value regardless of w
 - The same month/day should produce the same `DOY` in leap and non-leap years.
 - February 29 only exists in leap years and keeps its leap-year position.
 - Dates on or after March 1 in non-leap years shift forward by one so they line up with leap-year numbering.
+- Displayed and copied `DOY` values are not zero-padded.
 
 Examples:
 
 - March 1, 2020 -> `DOY 61`
 - March 1, 2021 -> `DOY 61`
+- February 29, 2020 -> `DOY 60`
+- January 9, 2026 -> `DOY 9`
 - May 9, 2026 -> `DOY 130`
 
 ## Why
@@ -55,5 +58,6 @@ export function dayOfYear(date: Date): number {
 ## Acceptance Criteria
 
 - March 1 returns `61` in both leap and non-leap years.
+- Two-digit and one-digit `DOY` values render without leading zeroes.
 - Formatter outputs using `Dxxx/366R` use normalized `DOY`.
 - The displayed interpolated moment-style expression lines use the same normalized `DOY` value as the copied output.
