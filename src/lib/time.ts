@@ -40,7 +40,7 @@ export function normalizedDayOfYear(date: Date): number {
 }
 
 export function formatDayProgress(date: Date): string {
-  return `${String(normalizedDayOfYear(date)).padStart(3, "0")}/366`
+  return `${normalizedDayOfYear(date)}/366`
 }
 
 export function formatWeekStamp(date: Date): string {

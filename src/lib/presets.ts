@@ -25,7 +25,7 @@ export type TimestampPreset = {
 }
 
 function withDayProgress(formatString: string, date: Date): string {
-  const dayOfYear = String(normalizedDayOfYear(date)).padStart(3, "0")
+  const dayOfYear = String(normalizedDayOfYear(date))
 
   return formatString.replaceAll("130", dayOfYear)
 }
