@@ -27,7 +27,7 @@ After any successful copy action, the copied preset row should briefly enter a s
 - The copied value cell must receive the strongest emphasis within the row.
 - The feedback must work the same for mouse/touch copy and keyboard shortcut copy.
 - The highlight must appear immediately after copy succeeds.
-- The highlight must clear automatically after a short timeout so the interface returns to its resting state.
+- The copied state must stay visible until another preset is copied.
 - The success styling must remain legible in both light and dark themes.
 - The interaction must preserve the current keyboard-friendly workflow and must not require focus to move.
 
@@ -36,11 +36,13 @@ After any successful copy action, the copied preset row should briefly enter a s
 - Prefer success-tinted background and value-cell emphasis over motion-heavy effects.
 - The row-level cue should be obvious enough to replicate the confidence of the old tool without looking noisy.
 - The copied button label can remain, but it should be secondary to the row/value highlight.
+- The copied button should align visually with the highlighted row rather than feeling detached from it.
 
 ## Acceptance Criteria
 
 - Copying a preset causes the entire row to shift into a success-highlighted state.
 - The copied value cell is more visually prominent than the surrounding rows.
 - Triggering copy with shortcuts `1-9` makes it immediately clear which row was copied.
-- The copied state clears automatically after the existing short feedback window.
+- The most recently copied preset stays highlighted until a different preset is copied.
+- The copied button feels visually aligned with the highlighted row in both light and dark themes.
 - Light and dark theme contrast remain readable during the highlighted state.

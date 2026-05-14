@@ -48,7 +48,7 @@ export function PresetSection({
               {index > 0 ? <Separator /> : null}
               <div
                 className={cn(
-                  "grid gap-3 px-3 py-3 transition-colors sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center",
+                  "grid gap-3 px-3 py-3 transition-colors sm:grid-cols-[minmax(0,1fr)_auto] sm:items-stretch",
                   isCopied && "bg-emerald-500/8"
                 )}
               >
@@ -81,7 +81,7 @@ export function PresetSection({
                 <Button
                   variant={isCopied ? "secondary" : "outline"}
                   className={cn(
-                    "h-9 rounded-md px-3 transition-colors sm:self-start",
+                    "h-9 rounded-md px-3 transition-colors sm:h-auto sm:self-stretch",
                     isCopied &&
                       "border-emerald-500/30 bg-emerald-100 text-emerald-900 hover:bg-emerald-100 dark:bg-emerald-500/14 dark:text-emerald-100 dark:hover:bg-emerald-500/20"
                   )}

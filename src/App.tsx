@@ -1,4 +1,4 @@
-import { useEffect, useEffectEvent, useRef, useState } from "react"
+import { useEffect, useEffectEvent, useState } from "react"
 import { LaptopMinimal, Moon, Sun } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -88,7 +88,6 @@ function App() {
   const [copiedPresetId, setCopiedPresetId] = useState<string | null>(null)
   const [statusMessage, setStatusMessage] = useState("Ready to copy.")
   const [themeMode, setThemeMode] = useState<ThemeMode>(getStoredThemeMode)
-  const copiedResetRef = useRef<number | null>(null)
 
   const frequentPresets = [...TRACKED_PRESETS].sort((left, right) => {
     const byUsage = (usageCounts[right.id] ?? 0) - (usageCounts[left.id] ?? 0)
@@ -118,14 +117,6 @@ function App() {
         return next
       })
     }
-
-    if (copiedResetRef.current) {
-      window.clearTimeout(copiedResetRef.current)
-    }
-
-    copiedResetRef.current = window.setTimeout(() => {
-      setCopiedPresetId(null)
-    }, 1600)
   }
 
   function handleRefresh() {
@@ -179,9 +170,6 @@ function App() {
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown)
-      if (copiedResetRef.current) {
-        window.clearTimeout(copiedResetRef.current)
-      }
     }
   }, [])
 
