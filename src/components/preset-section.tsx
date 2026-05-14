@@ -46,11 +46,21 @@ export function PresetSection({
           return (
             <div key={preset.id}>
               {index > 0 ? <Separator /> : null}
-              <div className="grid gap-3 px-3 py-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
+              <div
+                className={cn(
+                  "grid gap-3 px-3 py-3 transition-colors sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center",
+                  isCopied && "bg-emerald-500/8"
+                )}
+              >
                 <div className="min-w-0 space-y-1.5">
                   <div className="flex flex-wrap items-center gap-2 text-sm">
                     {ranked ? (
-                      <span className="rounded-sm bg-muted px-1.5 py-0.5 font-mono text-[11px] text-muted-foreground">
+                      <span
+                        className={cn(
+                          "rounded-sm bg-muted px-1.5 py-0.5 font-mono text-[11px] text-muted-foreground transition-colors",
+                          isCopied && "bg-emerald-100 text-emerald-800 dark:bg-emerald-500/18 dark:text-emerald-200"
+                        )}
+                      >
                         {index + 1}
                       </span>
                     ) : null}
@@ -58,15 +68,22 @@ export function PresetSection({
                       {expression}
                     </code>
                   </div>
-                  <code className="block overflow-x-auto rounded-sm bg-muted px-2.5 py-2 font-mono text-[13px] leading-5 break-all whitespace-pre-wrap text-foreground">
+                  <code
+                    className={cn(
+                      "block overflow-x-auto rounded-sm bg-muted px-2.5 py-2 font-mono text-[13px] leading-5 break-all whitespace-pre-wrap text-foreground transition-colors",
+                      isCopied &&
+                        "bg-emerald-100 text-emerald-950 ring-1 ring-emerald-500/30 dark:bg-emerald-500/14 dark:text-emerald-100 dark:ring-emerald-400/30"
+                    )}
+                  >
                     {value}
                   </code>
                 </div>
                 <Button
                   variant={isCopied ? "secondary" : "outline"}
                   className={cn(
-                    "h-9 rounded-md px-3 sm:self-start",
-                    isCopied && "border-transparent"
+                    "h-9 rounded-md px-3 transition-colors sm:self-start",
+                    isCopied &&
+                      "border-emerald-500/30 bg-emerald-100 text-emerald-900 hover:bg-emerald-100 dark:bg-emerald-500/14 dark:text-emerald-100 dark:hover:bg-emerald-500/20"
                   )}
                   onClick={() => onCopy(preset)}
                 >
