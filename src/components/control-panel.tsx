@@ -28,6 +28,7 @@ export function ControlPanel({
             step={1}
             value={selectedValue}
             onChange={(event) => onChange(event.target.value)}
+            onClick={(event) => event.currentTarget.showPicker?.()}
             className="h-10 rounded-md border-border bg-background shadow-none"
           />
         </label>
