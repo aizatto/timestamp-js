@@ -34,6 +34,20 @@ npm run build
 `public/v3/` is generated output and should not be edited by hand.
 `public/v1/` and `public/v2/` are historical archives and should not be copied into build outputs.
 
+## Cloudflare Pages
+
+Deploy this repo to Cloudflare Pages as a static Vite site through Git integration:
+
+- Build command: `npm run build`
+- Build output directory: `dist`
+- Root directory: repository root
+- Node version: `22.13.0`
+- Deploy command: leave blank / disabled
+
+Do not use `npx wrangler deploy`, `@cloudflare/vite-plugin`, `wrangler.jsonc`, or Worker
+runtime settings for this app unless it grows Pages Functions or Worker code. Pages should upload
+the `dist/` directory produced by the build command directly.
+
 ## Git Hooks
 
 The repo includes a pre-commit hook in `.githooks/pre-commit` that runs:
