@@ -13,7 +13,7 @@ deployment must not run the Workers deploy flow.
 - Build command: `npm run build`.
 - Build output directory: `dist`.
 - Root directory: repository root.
-- Node version: `22.13.0`, matching `.nvmrc`.
+- Node version: `24.18.0`, matching `.nvmrc`.
 - Deploy command: blank / disabled.
 
 ## Constraints
@@ -23,6 +23,9 @@ deployment must not run the Workers deploy flow.
   settings for the static app.
 - Add Cloudflare Worker or Pages Functions configuration only if the app introduces server-side
   runtime code.
+- Do not use Node `22.13.0` for Cloudflare builds. Cloudflare's Vite integration imports
+  `node:module.registerHooks`, which is available in Node `22.15.0` and newer 22.x releases, or
+  Node `24+`. This repo pins Node `24.18.0`, the current Node 24 LTS release.
 
 ## Verification
 

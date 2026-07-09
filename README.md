@@ -41,12 +41,16 @@ Deploy this repo to Cloudflare Pages as a static Vite site through Git integrati
 - Build command: `npm run build`
 - Build output directory: `dist`
 - Root directory: repository root
-- Node version: `22.13.0`
+- Node version: `24.18.0`
 - Deploy command: leave blank / disabled
 
 Do not use `npx wrangler deploy`, `@cloudflare/vite-plugin`, `wrangler.jsonc`, or Worker
 runtime settings for this app unless it grows Pages Functions or Worker code. Pages should upload
 the `dist/` directory produced by the build command directly.
+
+Node `22.13.0` is intentionally unsupported: Cloudflare's Vite integration imports
+`node:module.registerHooks`, which exists in Node `22.15.0` and newer 22.x releases, or Node `24+`.
+This repo pins Node `24.18.0`, the current Node 24 LTS release.
 
 ## Git Hooks
 

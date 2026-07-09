@@ -4,13 +4,16 @@
   "version": "0.0.0",
   "type": "module",
   "engines": {
-    "node": "^20.19.0 || ^22.13.0 || >=24.0.0"
+    "node": ">=24.0.0"
   },
   "scripts": {
     "dev": "vite",
+    "check:runtime": "node scripts/check-runtime.mjs",
     "hooks:install": "node scripts/setup-git-hooks.mjs",
     "prepare": "node scripts/setup-git-hooks.mjs",
     "typecheck": "tsc -b",
+    "prebuild": "npm run check:runtime",
+    "prebuild:app": "npm run check:runtime",
     "build:app": "vite build && node scripts/prune-build-output.mjs dist",
     "build:archive": "vite build --mode archive --outDir .tmp/archive && node scripts/prune-build-output.mjs .tmp/archive && node scripts/sync-archive.mjs",
     "build": "npm run typecheck && npm run build:app && npm run build:archive",
