@@ -2,17 +2,20 @@ import { RotateCcw } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { cn } from "@/lib/utils"
 
 type ControlPanelProps = {
   selectedValue: string
   onChange: (value: string) => void
   onRefresh: () => void
+  isRefreshHighlighted: boolean
 }
 
 export function ControlPanel({
   selectedValue,
   onChange,
   onRefresh,
+  isRefreshHighlighted,
 }: ControlPanelProps) {
   return (
     <section className="space-y-2">
@@ -35,8 +38,12 @@ export function ControlPanel({
         <div className="flex items-end sm:justify-end">
           <Button
             onClick={onRefresh}
-            variant="outline"
-            className="h-10 rounded-md px-3"
+            variant={isRefreshHighlighted ? "secondary" : "outline"}
+            className={cn(
+              "h-10 rounded-md px-3 transition-colors",
+              isRefreshHighlighted &&
+                "border-emerald-500/30 bg-emerald-100 text-emerald-900 hover:bg-emerald-100 dark:bg-emerald-500/14 dark:text-emerald-100 dark:hover:bg-emerald-500/20"
+            )}
           >
             <RotateCcw className="size-4" />
             Refresh

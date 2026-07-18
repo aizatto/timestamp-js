@@ -86,6 +86,7 @@ function App() {
   const [inputValue, setInputValue] = useState(() => toDateTimeLocalValue(new Date()))
   const [usageCounts, setUsageCounts] = useState(loadUsageCounts)
   const [copiedPresetId, setCopiedPresetId] = useState<string | null>(null)
+  const [isRefreshHighlighted, setIsRefreshHighlighted] = useState(false)
   const [statusMessage, setStatusMessage] = useState("Ready to copy.")
   const [themeMode, setThemeMode] = useState<ThemeMode>(getStoredThemeMode)
 
@@ -104,6 +105,7 @@ function App() {
     await copyToClipboard(value)
 
     setCopiedPresetId(preset.id)
+    setIsRefreshHighlighted(false)
     setStatusMessage(`Copied ${value}`)
 
     if (preset.trackUsage) {
@@ -125,6 +127,7 @@ function App() {
     setInputValue(toDateTimeLocalValue(nextDate))
     setStatusMessage(`Refreshed to ${formatReferenceLabel(nextDate)}`)
     setCopiedPresetId(null)
+    setIsRefreshHighlighted(true)
   }
 
   function handleInputChange(value: string) {
@@ -255,6 +258,7 @@ function App() {
             selectedValue={inputValue}
             onChange={handleInputChange}
             onRefresh={handleRefresh}
+            isRefreshHighlighted={isRefreshHighlighted}
           />
 
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
