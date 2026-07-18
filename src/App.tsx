@@ -124,6 +124,7 @@ function App() {
     setSelectedDate(nextDate)
     setInputValue(toDateTimeLocalValue(nextDate))
     setStatusMessage(`Refreshed to ${formatReferenceLabel(nextDate)}`)
+    setCopiedPresetId(null)
   }
 
   function handleInputChange(value: string) {
